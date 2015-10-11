@@ -66,6 +66,14 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    @Override
+    protected void onPause() {
+        // Empty the text box, to protect privacy.
+        setText("");
+
+        super.onPause();
+    }
+
     private String getText() {
         EditText textBox = (EditText)findViewById(R.id.editText);
         return textBox.getText().toString();
