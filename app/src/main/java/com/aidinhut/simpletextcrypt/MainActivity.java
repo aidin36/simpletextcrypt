@@ -71,6 +71,9 @@ public class MainActivity extends ActionBarActivity {
         // Empty the text box, to protect privacy.
         setText("");
 
+        // Finishing this activity, to get back to the lock screen.
+        finish();
+
         super.onPause();
     }
 
