@@ -1,6 +1,8 @@
 package com.aidinhut.simpletextcrypt;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,12 +14,17 @@ import android.widget.Button;
 public class LockActivity extends ActionBarActivity {
 
     private String clickedDigits = "";
-    private final String pass = "1829";
+    private final String defaultPass = "1111";
+    private String pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lock);
+
+        SharedPreferences sharedPref = this.getSharedPreferences(Constants.PREFERENCES_KEY,
+                                                                 Context.MODE_PRIVATE);
+        pass = sharedPref.getString(Constants.PASSCODE_SETTINGS_KEY, defaultPass);
     }
 
     @Override

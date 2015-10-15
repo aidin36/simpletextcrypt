@@ -3,5 +3,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_lock">LockActivity</string>
+    <string name="title_activity_lock">Lock</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="invalid_key_error">Key length must be 32 characters.</string>
+    <string name="invalid_passcode_error">Passcode must have at least 2 characters.</string>
+    <string name="error_title">Error</string>
+    <string name="settings_save_error">Couldn\'t save settings!</string>
+    <string name="no_encryption_key_set_error">Encryption key doesn\'t set. Please see the settings.</string>
 </resources>

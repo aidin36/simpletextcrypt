@@ -14,15 +14,14 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-/**
- * Created by aidin on 10/9/15.
+/*
+ * Provides methods for encrypting and decrypting data.
  */
 public class Crypter {
 
     private static String ivKey = "Rt9832jdnc@3kfP.";
-    private static String encKey = "4rFdhfbv*&.,;[DwqncSq~dcmPjf.,LG";
 
-    public static String encrypt(String input)
+    public static String encrypt(String encKey, String input)
         throws UnsupportedEncodingException,
                NoSuchAlgorithmException,
                NoSuchPaddingException,
@@ -42,7 +41,7 @@ public class Crypter {
         return Base64.encodeToString(encrypted, Base64.DEFAULT);
     }
 
-    public static String decrypt(String input)
+    public static String decrypt(String encKey, String input)
         throws UnsupportedEncodingException,
                NoSuchAlgorithmException,
                NoSuchPaddingException,
