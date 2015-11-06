@@ -12,7 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.aidinhut.simpletextcrypt.exceptions.EncryptionKeyNotSet;
+
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.security.GeneralSecurityException;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -49,7 +53,7 @@ public class MainActivity extends ActionBarActivity {
             setText(Crypter.encrypt(getEncryptionKey(), getText()));
         }
         catch (Exception error) {
-            showErrorMessage(error.getMessage());
+            Utilities.showErrorMessage(error.getMessage(), this);
         }
     }
 
@@ -58,7 +62,7 @@ public class MainActivity extends ActionBarActivity {
             setText(Crypter.decrypt(getEncryptionKey(), getText()));
         }
         catch (Exception error) {
-            showErrorMessage(error.getMessage());
+            Utilities.showErrorMessage(error.getMessage(), this);
         }
     }
 
@@ -105,30 +109,17 @@ public class MainActivity extends ActionBarActivity {
 
     /*
      * Returns the encryption key from settings.
-     *
-     * @throw Exception: When key not found.
      */
-    private String getEncryptionKey() throws Exception {
-        SharedPreferences sharedPref = this.getSharedPreferences(Constants.PREFERENCES_KEY,
-                                                                 Context.MODE_PRIVATE);
-        String encKey = sharedPref.getString(Constants.ENCRYPTION_KEY_SETTINGS_KEY, null);
+    private String getEncryptionKey() throws UnsupportedEncodingException,
+            GeneralSecurityException,
+            EncryptionKeyNotSet {
+        String encKey = SettingsManager.getInstance().getEncryptionKey(this);
 
-        if (encKey == null) {
-            throw new Exception(getString(R.string.no_encryption_key_set_error));
+        if (encKey == "") {
+            throw new EncryptionKeyNotSet(this);
         }
 
         return encKey;
     }
 
-    /*
-     * Shows the specified message, in a dialog box titled `Error'.
-     */
-    private void showErrorMessage(String message) {
-        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
-        dlgAlert.setMessage(message);
-        dlgAlert.setTitle(getString(R.string.error_title));
-        dlgAlert.setPositiveButton("OK", null);
-        dlgAlert.setCancelable(true);
-        dlgAlert.create().show();
-    }
 }

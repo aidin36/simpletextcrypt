@@ -10,4 +10,6 @@
     <string name="error_title">Error</string>
     <string name="settings_save_error">Couldn\'t save settings!</string>
     <string name="no_encryption_key_set_error">Encryption key doesn\'t set. Please see the settings.</string>
+    <string name="unlockButtonText">Unlock</string>
+    <string name="wrong_passcode_error">Entered passcode is wrong.</string>
 </resources>

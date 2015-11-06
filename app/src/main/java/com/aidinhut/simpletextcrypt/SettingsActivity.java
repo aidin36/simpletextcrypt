@@ -26,26 +26,20 @@ public class SettingsActivity extends ActionBarActivity {
         EditText passcodeTextBox = (EditText)findViewById(R.id.passcodeEditText);
 
         if (encryptionKeyTextBox.getText().toString().length() != 32) {
-            showErrorMessage(getString(R.string.invalid_key_error));
+            Utilities.showErrorMessage(getString(R.string.invalid_key_error), this);
             return;
         }
         if (passcodeTextBox.getText().toString().length() < 2) {
-            showErrorMessage(getString(R.string.invalid_passcode_error));
+            Utilities.showErrorMessage(getString(R.string.invalid_passcode_error), this);
             return;
         }
 
         // Saving settings.
-        SharedPreferences sharedPref = this.getSharedPreferences(Constants.PREFERENCES_KEY,
-                                                                 Context.MODE_PRIVATE);
-        SharedPreferences.Editor prefEditor = sharedPref.edit();
-        prefEditor.putString(Constants.ENCRYPTION_KEY_SETTINGS_KEY,
-                             encryptionKeyTextBox.getText().toString());
-
-        prefEditor.putString(Constants.PASSCODE_SETTINGS_KEY,
-                passcodeTextBox.getText().toString());
-
-        if (!prefEditor.commit()) {
-            showErrorMessage(getString(R.string.settings_save_error));
+        try {
+            SettingsManager.getInstance().setPasscode(passcodeTextBox.getText().toString(), this);
+            SettingsManager.getInstance().setEncryptionKey(encryptionKeyTextBox.getText().toString(), this);
+        } catch (Exception error) {
+            Utilities.showErrorMessage(error.getMessage(), this);
             return;
         }
 
@@ -53,25 +47,15 @@ public class SettingsActivity extends ActionBarActivity {
         finish();
     }
 
-    private void showErrorMessage(String message) {
-        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
-        dlgAlert.setMessage(message);
-        dlgAlert.setTitle(getString(R.string.error_title));
-        dlgAlert.setPositiveButton("OK", null);
-        dlgAlert.setCancelable(true);
-        dlgAlert.create().show();
-    }
-
     private void loadPreviousSettings() {
         EditText encryptionKeyTextBox = (EditText)findViewById(R.id.encryptionKeyEditText);
         EditText passcodeTextBox = (EditText)findViewById(R.id.passcodeEditText);
 
-        SharedPreferences sharedPref = this.getSharedPreferences(Constants.PREFERENCES_KEY,
-                Context.MODE_PRIVATE);
-
-        encryptionKeyTextBox.setText(sharedPref.getString(
-                Constants.ENCRYPTION_KEY_SETTINGS_KEY, ""));
-        passcodeTextBox.setText(sharedPref.getString(
-                Constants.PASSCODE_SETTINGS_KEY, "1111"));
+        try {
+            encryptionKeyTextBox.setText(SettingsManager.getInstance().getEncryptionKey(this));
+            passcodeTextBox.setText(SettingsManager.getInstance().getPasscode(this));
+        } catch (Exception error) {
+            Utilities.showErrorMessage(error.getMessage(), this);
+        }
     }
 }

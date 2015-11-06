@@ -9,47 +9,47 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
 
 
 public class LockActivity extends ActionBarActivity {
-
-    private String clickedDigits = "";
-    private final String defaultPass = "1111";
-    private String pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lock);
-
-        SharedPreferences sharedPref = this.getSharedPreferences(Constants.PREFERENCES_KEY,
-                                                                 Context.MODE_PRIVATE);
-        pass = sharedPref.getString(Constants.PASSCODE_SETTINGS_KEY, defaultPass);
     }
 
-    @Override
-    protected void onResume() {
-        // Clearing previously typed pass.
-        clickedDigits = "";
+    public void onUnlockButtonClicked(View view) {
+        EditText passcodeBox = (EditText)findViewById(R.id.passcodeEditText);
+        String passcode = passcodeBox.getText().toString();
 
-        super.onResume();
-    }
+        // Clearing passcode text box.
+        passcodeBox.setText("");
 
-    public void onDigitButtonClicked(View view) {
-        clickedDigits += ((Button)view).getText();
-
-        if (pass.compareTo(clickedDigits) == 0)
-        {
-            // Right password. Continue to the other activity.
-            Intent newIntent = new Intent(view.getContext(), MainActivity.class);
-            startActivity(newIntent);
+        String savedPasscode;
+        try {
+            savedPasscode = SettingsManager.getInstance().tryGetPasscode(passcode, this);
+        } catch (IllegalBlockSizeException| BadPaddingException error) {
+            // The settings couldn't be decrypted using this passcode. It probably wrong.
+            Utilities.showErrorMessage(getString(R.string.wrong_passcode_error), this);
+            return;
+        } catch (Exception error) {
+            // Any other errors.
+            Utilities.showErrorMessage(error.getMessage(), this);
+            return;
         }
 
-        if (clickedDigits.length() > pass.length() ||
-            pass.substring(0, clickedDigits.length()).compareTo(clickedDigits) != 0)
-        {
-            // Wrong password. Resetting code.
-            clickedDigits = "";
+        if (savedPasscode.compareTo(passcode) != 0) {
+            Utilities.showErrorMessage(getString(R.string.wrong_passcode_error), this);
+            return;
         }
+
+        // Right password. Continue to the other activity.
+        Intent newIntent = new Intent(view.getContext(), MainActivity.class);
+        startActivity(newIntent);
     }
 }
