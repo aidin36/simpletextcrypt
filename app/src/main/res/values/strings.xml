@@ -12,4 +12,6 @@
     <string name="no_encryption_key_set_error">Encryption key doesn\'t set. Please see the settings.</string>
     <string name="unlockButtonText">Unlock</string>
     <string name="wrong_passcode_error">Entered passcode is wrong.</string>
+    <string name="encryption_key_label">Encryption Key (Must be 32 characters)</string>
+    <string name="passcode_label">Passcode (of Lock screen)</string>
 </resources>
