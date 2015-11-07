@@ -5,9 +5,13 @@ import android.content.SharedPreferences;
 
 import com.aidinhut.simpletextcrypt.exceptions.EncryptionKeyNotSet;
 import com.aidinhut.simpletextcrypt.exceptions.SettingsNotSavedException;
+import com.aidinhut.simpletextcrypt.exceptions.WrongPasscodeException;
 
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
 
 /*
  * Manages settings of the app.
@@ -37,7 +41,8 @@ public class SettingsManager {
      */
     public String tryGetPasscode(String passcode, Context context)
             throws UnsupportedEncodingException,
-            GeneralSecurityException {
+            GeneralSecurityException,
+            WrongPasscodeException {
         SharedPreferences sharedPref = context.getSharedPreferences(Constants.PREFERENCES_KEY,
                 Context.MODE_PRIVATE);
 
@@ -48,9 +53,14 @@ public class SettingsManager {
         // Keeping passcode for later use.
         this.passcode = passcode;
 
+        try {
         return Crypter.decryptWithPassword(
                 this.passcode,
                 sharedPref.getString(Constants.PASSCODE_SETTINGS_KEY, Constants.DEFAULT_PASSCODE));
+        } catch (IllegalBlockSizeException | BadPaddingException error) {
+            // The settings couldn't be decrypted using this passcode. It probably wrong.
+            throw new WrongPasscodeException(context);
+        }
     }
 
     /*

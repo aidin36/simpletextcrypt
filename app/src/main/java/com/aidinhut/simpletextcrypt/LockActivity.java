@@ -33,10 +33,6 @@ public class LockActivity extends ActionBarActivity {
         String savedPasscode;
         try {
             savedPasscode = SettingsManager.getInstance().tryGetPasscode(passcode, this);
-        } catch (IllegalBlockSizeException| BadPaddingException error) {
-            // The settings couldn't be decrypted using this passcode. It probably wrong.
-            Utilities.showErrorMessage(getString(R.string.wrong_passcode_error), this);
-            return;
         } catch (Exception error) {
             // Any other errors.
             Utilities.showErrorMessage(error.getMessage(), this);
