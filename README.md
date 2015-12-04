@@ -35,3 +35,15 @@ This article tells us that we should encrypt everything not just to protect our
 privacy, but also to protect those activists which their lives are depend on
 encryption.
 
+Copyright
+---------
+
+Copyright 2015 Aidin Gharibnavaz
+
+This app is Free Software and published under the terms of Gnu General Public
+License, either version 3 of the License, or any later versions published by
+Free Software Foundation. You can find a copy of the license here:
+
+    https://www.gnu.org/licenses/gpl-3.0.html
+
+
