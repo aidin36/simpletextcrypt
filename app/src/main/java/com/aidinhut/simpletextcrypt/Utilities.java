@@ -17,6 +17,6 @@ public class Utilities {
         dlgAlert.setTitle(context.getString(R.string.error_title));
         dlgAlert.setPositiveButton("OK", null);
         dlgAlert.setCancelable(true);
-        dlgAlert.create().show();
+        dlgAlert.show();
     }
 }
