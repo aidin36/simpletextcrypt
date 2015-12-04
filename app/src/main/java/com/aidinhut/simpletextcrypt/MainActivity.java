@@ -7,10 +7,14 @@ import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.ClipboardManager;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.aidinhut.simpletextcrypt.exceptions.EncryptionKeyNotSet;
 
@@ -43,6 +47,11 @@ public class MainActivity extends ActionBarActivity {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingsIntent);
             return true;
+        }
+
+        if (id == R.id.action_about) {
+            // Showing about message.
+            showAbout();
         }
 
         return super.onOptionsItemSelected(item);
@@ -120,6 +129,27 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return encKey;
+    }
+
+    private void showAbout() {
+        // To align the text at the center, I created a custom text view for the message dialog.
+        TextView messageTextView = new TextView(this);
+        messageTextView.setLinksClickable(true);
+        messageTextView.setAutoLinkMask(Linkify.WEB_URLS);
+        messageTextView.setText(String.format("%s\n\n%s\n%s",
+                this.getString(R.string.about_copyright),
+                this.getString(R.string.about_license),
+                this.getString(R.string.about_source)));
+        messageTextView.setPadding(10, 10, 10, 10);
+        messageTextView.setGravity(Gravity.CENTER);
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setView(messageTextView);
+        //dialogBuilder.setTitle(this.getString(R.string.about_title));
+        dialogBuilder.setPositiveButton("OK", null);
+        dialogBuilder.setCancelable(true);
+
+        dialogBuilder.show();
     }
 
 }
