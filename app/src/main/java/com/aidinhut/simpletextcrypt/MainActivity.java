@@ -31,6 +31,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.aidinhut.simpletextcrypt.exceptions.EncryptionKeyNotSet;
@@ -149,20 +150,25 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void showAbout() {
-        // To align the text at the center, I created a custom text view for the message dialog.
+        // To align the text at the center, and make it scrollable, I created a custom view
+        // for the message dialog.
         TextView messageTextView = new TextView(this);
         messageTextView.setLinksClickable(true);
         messageTextView.setAutoLinkMask(Linkify.WEB_URLS);
-        messageTextView.setText(String.format("%s\n\n%s\n%s",
+        messageTextView.setText(String.format("%s\n\n%s\n\n%s\n%s\n\n%s",
                 this.getString(R.string.about_copyright),
-                this.getString(R.string.about_license),
-                this.getString(R.string.about_source)));
+                this.getString(R.string.about_source),
+                this.getString(R.string.about_license_1),
+                this.getString(R.string.about_license_2),
+                this.getString(R.string.about_license_3)));
         messageTextView.setPadding(10, 10, 10, 10);
         messageTextView.setGravity(Gravity.CENTER);
 
+        ScrollView scrollView = new ScrollView(this);
+        scrollView.addView(messageTextView);
+
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-        dialogBuilder.setView(messageTextView);
-        //dialogBuilder.setTitle(this.getString(R.string.about_title));
+        dialogBuilder.setView(scrollView);
         dialogBuilder.setPositiveButton("OK", null);
         dialogBuilder.setCancelable(true);
 
