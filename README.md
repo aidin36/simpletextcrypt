@@ -2,23 +2,22 @@ Simple Text Crypt
 =================
 
 It's an Android app which encrypts plain texts using AES256 algorithm.
-
-Why Another App?
----------------
-
-Most of the text encryption apps I found has had access to the internet, and
-I couldn't trust them!  Thus, I decided to write my own app.
+This app does not claim any permissions, so you can trust that it cannot send
+any of your private data to anyone.
 
 Can You Trust it?
 -----------------
 
-This app is secure enough for i.e. sending messages to your friends or
-encrypting your diaries. It uses
+Messages produces by this app is secure and can be
+confidently send over a network, for example. It uses
 [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
-in ``CBC`` mode with ``PKCS5`` padding, which is very powerful encryption.
+in CBC mode with
+PKCS5 padding, which is a very powerful encryption. Also it encrypts its
+settings before storing them on the device, which contains the encryption key.
 
-However, I'm not a security expert, so I don't recommend using this
-app for serious data encryption.
+However, the app itself may not be very secure, and probably volunteer to
+some attacks. Although it is secure enough to stand attacks from non-expert
+crackers, e.g. normal users, it should not be used for serious data encryption.
 
 Why Should You Encrypt?
 ----------------------
