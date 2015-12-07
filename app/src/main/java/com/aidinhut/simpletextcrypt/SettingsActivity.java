@@ -64,6 +64,15 @@ public class SettingsActivity extends ActionBarActivity {
         finish();
     }
 
+    @Override
+    protected void onPause() {
+        // This activity won't lock. So, if the user send the app to the background while on
+        // the settings activity, anyone can get back to it without the need to enter passcode.
+        finish();
+
+        super.onPause();
+    }
+
     private void loadPreviousSettings() {
         EditText encryptionKeyTextBox = (EditText)findViewById(R.id.encryptionKeyEditText);
         EditText passcodeTextBox = (EditText)findViewById(R.id.passcodeEditText);
