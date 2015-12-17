@@ -20,4 +20,5 @@
     <string name="about_license_1">SimpleTextCrypt is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="about_license_2">SimpleTextCrypt is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.</string>
     <string name="about_license_3">A copy of the GNU General Public License is distributed along with the source code of SimpleTextCrypt. You can also find a copy here: <a>https://www.gnu.org/licenses/gpl-3.0.html</a></string>
+    <string name="default_passcode">Default passcode is: 1111</string>
 </resources>
