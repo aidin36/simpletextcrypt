@@ -37,6 +37,12 @@ This article tells us that we should encrypt everything not just to protect our
 privacy, but also to protect those activists which their lives are depend on
 encryption.
 
+Installation
+------------
+
+Compiled apk is available on
+[F-Droid](https://f-droid.org/repository/browse/?fdid=com.aidinhut.simpletextcrypt).
+
 Copyright
 ---------
 
