@@ -1,7 +1,7 @@
 Simple Text Crypt
 =================
 
-It's an Android app which encrypts plain texts using AES256 algorithm.
+It's an Android app which encrypts plain texts.
 This app does not claim any permissions, so you can trust that it cannot send
 any of your private data to anyone.
 
@@ -12,10 +12,13 @@ Messages produces by this app is secure and can be
 confidently send over a network, for example. It uses
 [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
 in CBC mode with
-PKCS5 padding, which is a very powerful encryption. Also it encrypts its
-settings before storing them on the device, which contains the encryption key.
+PKCS5 padding for encryption, and uses
+[PBKDF2](https://en.wikipedia.org/wiki/PBKDF2) with HMAC, SHA1 and a random Salt
+in order to derive a secure key from the entered password.
+This is a very powerful encryption. Also it encrypts its
+settings before storing them on the device.
 
-However, the app itself may not be very secure, and probably volunteer to
+However, the app itself may not be very secure, and probably vulnerable to
 some attacks. Although it is secure enough to stand attacks from non-expert
 crackers, e.g. normal users, it should not be used for serious data encryption.
 
