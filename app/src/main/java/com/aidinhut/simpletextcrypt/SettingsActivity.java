@@ -42,7 +42,7 @@ public class SettingsActivity extends ActionBarActivity {
         EditText encryptionKeyTextBox = (EditText)findViewById(R.id.encryptionKeyEditText);
         EditText passcodeTextBox = (EditText)findViewById(R.id.passcodeEditText);
 
-        if (encryptionKeyTextBox.getText().toString().length() != 32) {
+        if (encryptionKeyTextBox.getText().toString().length() < 3) {
             Utilities.showErrorMessage(getString(R.string.invalid_key_error), this);
             return;
         }

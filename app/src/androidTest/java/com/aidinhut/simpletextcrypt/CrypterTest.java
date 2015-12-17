@@ -60,8 +60,8 @@ public class CrypterTest extends ApplicationTestCase<Application> {
         String data = "Hi there! I'm a test data that is going to be encrypted.";
         String decryptedData = null;
 
-        String encryptedData = Crypter.encryptWithPassword(password, data);
-        decryptedData = Crypter.decryptWithPassword(password, encryptedData);
+        String encryptedData = Crypter.encrypt(password, data);
+        decryptedData = Crypter.decrypt(password, encryptedData);
 
         Assert.assertEquals(decryptedData, data);
     }

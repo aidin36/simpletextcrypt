@@ -71,7 +71,7 @@ public class SettingsManager {
         this.passcode = passcode;
 
         try {
-        return Crypter.decryptWithPassword(
+        return Crypter.decrypt(
                 this.passcode,
                 sharedPref.getString(Constants.PASSCODE_SETTINGS_KEY, Constants.DEFAULT_PASSCODE));
         } catch (IllegalBlockSizeException | BadPaddingException error) {
@@ -93,7 +93,7 @@ public class SettingsManager {
             return Constants.DEFAULT_PASSCODE;
         }
 
-        return Crypter.decryptWithPassword(
+        return Crypter.decrypt(
                     this.passcode,
                     sharedPref.getString(Constants.PASSCODE_SETTINGS_KEY, Constants.DEFAULT_PASSCODE));
     }
@@ -116,7 +116,7 @@ public class SettingsManager {
         SharedPreferences.Editor prefEditor = sharedPref.edit();
 
         prefEditor.putString(Constants.PASSCODE_SETTINGS_KEY,
-                Crypter.encryptWithPassword(passcode, passcode));
+                Crypter.encrypt(passcode, passcode));
 
         if (!prefEditor.commit()) {
             throw new SettingsNotSavedException(context);
@@ -139,7 +139,7 @@ public class SettingsManager {
             return "";
         }
 
-        return Crypter.decryptWithPassword(
+        return Crypter.decrypt(
                 this.passcode,
                 sharedPref.getString(Constants.ENCRYPTION_KEY_SETTINGS_KEY, ""));
     }
@@ -158,7 +158,7 @@ public class SettingsManager {
         SharedPreferences.Editor prefEditor = sharedPref.edit();
 
         prefEditor.putString(Constants.ENCRYPTION_KEY_SETTINGS_KEY,
-                Crypter.encryptWithPassword(this.passcode, key));
+                Crypter.encrypt(this.passcode, key));
 
         if (!prefEditor.commit()) {
             throw new SettingsNotSavedException(context);
