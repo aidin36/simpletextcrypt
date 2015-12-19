@@ -40,8 +40,11 @@ encryption.
 Installation
 ------------
 
-Compiled apk is available on
+It is recommended to install the app from
 [F-Droid](https://f-droid.org/repository/browse/?fdid=com.aidinhut.simpletextcrypt).
+
+Alternatively, you can download the apk directly from
+[releases tab](https://github.com/aidin36/simpletextcrypt/releases).
 
 Copyright
 ---------
