@@ -22,11 +22,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -38,9 +41,27 @@ public class LockActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lock);
+
+        // Handling pressing Enter key on the keyboard. It should automatically unlock the app.
+        ((EditText)findViewById(R.id.passcodeEditText)).setOnEditorActionListener(
+                new TextView.OnEditorActionListener() {
+                    @Override
+                    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                        if (actionId == EditorInfo.IME_ACTION_DONE) {
+                            unlock();
+                            return true;
+                        }
+                        return false;
+                    }
+                }
+        );
     }
 
     public void onUnlockButtonClicked(View view) {
+        unlock();
+    }
+
+    private void unlock() {
         EditText passcodeBox = (EditText)findViewById(R.id.passcodeEditText);
         String passcode = passcodeBox.getText().toString();
 
@@ -62,7 +83,7 @@ public class LockActivity extends ActionBarActivity {
         }
 
         // Right password. Continue to the other activity.
-        Intent newIntent = new Intent(view.getContext(), MainActivity.class);
+        Intent newIntent = new Intent(this, MainActivity.class);
         startActivity(newIntent);
     }
 }

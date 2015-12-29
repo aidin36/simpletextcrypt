@@ -35,7 +35,9 @@
                 android:id="@+id/passcodeEditText"
                 android:layout_marginTop="25dp"
                 android:layout_centerHorizontal="true"
-                android:gravity="center" />
+                android:gravity="center"
+                android:imeActionId="@android:integer/config_shortAnimTime"
+                android:imeOptions="actionDone"/>
 
             <Button
                 android:layout_width="wrap_content"
