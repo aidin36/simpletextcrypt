@@ -28,7 +28,7 @@
     <string name="action_about">À propos</string>
     <string name="title_activity_lock">Verrouiller</string>
     <string name="title_activity_settings">Paramètres</string>
-    <string name="invalid_key_error">La longueur de la clé doit être d'au moins 3 caractères.</string>
+    <string name="invalid_key_error">La longueur de la clé doit être d\'au moins 3 caractères.</string>
     <string name="invalid_passcode_error">Le code doit avoir au moins 2 caractères.</string>
     <string name="error_title">Erreur</string>
     <string name="settings_save_error">Impossible d\'enregistrer les préférences !</string>
@@ -40,8 +40,12 @@
     <string name="about_title">À propos de SimpleTextCrypt</string>
     <string name="about_copyright">Copyright © 2015 Aidin Gharibnavaz</string>
     <string name="about_source">Le code source de cette app peut être trouvé sur : https://github.com/aidin36/simpletextcrypt</string>
-    <string name="about_license_1">SimpleTextCrypt est un logiciel libre : vous pouvez le redistribuer et/ou le modifier sous les conditions la licence publique général GNU tel que publié par la Free Software Foundation, soit la version 3 de la license, ou (selon votre convenance) n'importe quelle version supérieure.</string>
-    <string name="about_license_2">SimpleTextCrypt est distribué dans l\'espoir qu\'il soit utile, mais SANS AUCUNE GARANTIE; sans même la garantie implicite de COMMERCIABILITÉ ou D'ADAPTATION A UN USAGE PARTICULIER. Lisez la licence publique général GNU pour plus de details.</string>
+    <string name="about_license_1">SimpleTextCrypt est un logiciel libre : vous pouvez le redistribuer et/ou le modifier sous les conditions la licence publique général GNU tel que publié par la Free Software Foundation, soit la version 3 de la license, ou (selon votre convenance) n\'importe quelle version supérieure.</string>
+    <string name="about_license_2">SimpleTextCrypt est distribué dans l\'espoir qu\'il soit utile, mais SANS AUCUNE GARANTIE; sans même la garantie implicite de COMMERCIABILITÉ ou D\'ADAPTATION A UN USAGE PARTICULIER. Lisez la licence publique général GNU pour plus de details.</string>
     <string name="about_license_3">Une copie de la licence publique général GNU est distribuée avec le code source de SimpleTextCrypt. Vous pouvez aussi vous procurer une copie à : <a>https://www.gnu.org/licenses/gpl-3.0.html</a></string>
     <string name="default_passcode">Le code par défaut est : 1111</string>
+    <string name="encrypt_button_text">Crypter</string>
+    <string name="decrypt_button_text">Décrypter</string>
+    <string name="copy_button_text">Copie</string>
+    <string name="paste_button_text">Coller</string>
 </resources>

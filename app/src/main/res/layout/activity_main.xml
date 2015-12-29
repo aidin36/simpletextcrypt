@@ -37,7 +37,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Encrypt"
+            android:text="@string/encrypt_button_text"
             android:id="@+id/encryptButton"
             android:layout_margin="5dp"
             android:onClick="onEncryptButtonClicked" />
@@ -45,7 +45,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Decrypt"
+            android:text="@string/decrypt_button_text"
             android:id="@+id/decryptButton"
             android:layout_margin="5dp"
             android:onClick="onDecryptButtonClicked" />
@@ -64,7 +64,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Copy"
+            android:text="@string/copy_button_text"
             android:id="@+id/copyButton"
             android:layout_margin="5dp"
             android:onClick="onCopyButtonClicked" />
@@ -72,7 +72,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Paste"
+            android:text="@string/paste_button_text"
             android:id="@+id/pasteButton"
             android:layout_margin="5dp"
             android:onClick="onPasteButtonClicked" />

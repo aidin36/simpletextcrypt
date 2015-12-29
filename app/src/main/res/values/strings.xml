@@ -22,4 +22,8 @@
     <string name="about_license_2">SimpleTextCrypt is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.</string>
     <string name="about_license_3">A copy of the GNU General Public License is distributed along with the source code of SimpleTextCrypt. You can also find a copy here: <a>https://www.gnu.org/licenses/gpl-3.0.html</a></string>
     <string name="default_passcode">Default passcode is: 1111</string>
+    <string name="encrypt_button_text">Encrypt</string>
+    <string name="decrypt_button_text">Decrypt</string>
+    <string name="copy_button_text">Copy</string>
+    <string name="paste_button_text">Paste</string>
 </resources>
