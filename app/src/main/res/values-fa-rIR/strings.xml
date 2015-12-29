@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This file is part of SimpleTextCrypt.
+    Copyright (C) 2015, Aidin Gharibnavaz <aidin@aidinhut.com>
+
+    SimpleTextCrypt is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    SimpleTextCrypt is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with SimpleTextCrypt. If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<resources>
+    <string name="app_name">SimpleTextCrypt</string>
+
+    <string name="action_settings">تنظیمات</string>
+    <string name="action_about">درباره</string>
+    <string name="title_activity_lock">قفل</string>
+    <string name="title_activity_settings">تنظیمات</string>
+    <string name="invalid_key_error">طول کلید باید حداقل سه کرکتر باشد.</string>
+    <string name="invalid_passcode_error">رمز ورود باید حداقل سه رقم باشد.</string>
+    <string name="error_title">خطا</string>
+    <string name="settings_save_error">خطا در ذخیره تنظیمات!</string>
+    <string name="no_encryption_key_set_error">کلید رمزگذاری تعیین نشده است. لطفا تنظیمات را ببینید.</string>
+    <string name="unlockButtonText">باز کن</string>
+    <string name="wrong_passcode_error">رمز ورود اشتباه است.</string>
+    <string name="encryption_key_label">کلید رمزگذاری. از یک کلید قوی استفاده کنید (مثلا "jn@32+iQm9")</string>
+    <string name="passcode_label">رمز ورود (صفحه قفل)</string>
+    <string name="about_title">درباره SimpleTextCrypt</string>
+    <string name="about_copyright">کپی رایت (copyright) ۲۰۱۵ آیدین غریب‌نواز</string>
+    <string name="about_source">سورس کد این اپ در این مسیر در دسترس است: https://github.com/aidin36/simpletextcrypt</string>
+    <string name="about_license_1">اپ SimpleTextCrypt یک نرم‌افزار آزاد است: شما می‌توانید آن را مطابق قوانین GNU General Public License نسخه سه یا (در صورت تمایل) هر نسخه بعد از آن، بازنشر و/یاتغییر دهید.</string>
+    <string name="about_license_2">اپ SimpleTextCrypt با این امید انتشار یافته که مفید باشد. ولی بدون هیچ تضمینی. حتی تضمین اینکه برای کار خاصی مناسب باشد. برای اطلاعات بیشتر GNU General Public License را ببینید.</string>
+    <string name="about_license_3">یک نسخه از GNU General Public License همراه سورس کد SimpleTextCrypt انتشار یافته است. اگر آن را نیافتید، اینجا را ببینید: <a>https://www.gnu.org/licenses/gpl-3.0.html</a></string>
+    <string name="default_passcode">رمز عبور پیش فرض: 1111</string>
+    <string name="encrypt_button_text">رمز گذاری</string>
+    <string name="decrypt_button_text">رمز گشایی</string>
+    <string name="copy_button_text">کپی</string>
+    <string name="paste_button_text">چسباندن</string>
+</resources>
