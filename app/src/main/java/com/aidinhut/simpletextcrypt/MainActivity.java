@@ -17,11 +17,14 @@
  */
 package com.aidinhut.simpletextcrypt;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.security.GeneralSecurityException;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.ClipboardManager;
 import android.text.method.LinkMovementMethod;
@@ -33,15 +36,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.aidinhut.simpletextcrypt.exceptions.EncryptionKeyNotSet;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.security.GeneralSecurityException;
 
-
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

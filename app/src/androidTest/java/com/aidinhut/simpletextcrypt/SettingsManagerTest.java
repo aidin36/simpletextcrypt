@@ -23,7 +23,7 @@ import android.test.InstrumentationTestCase;
 
 import com.aidinhut.simpletextcrypt.exceptions.WrongPasscodeException;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Test;
 
 /*
