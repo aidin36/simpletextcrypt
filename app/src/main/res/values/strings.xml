@@ -29,4 +29,5 @@
     <string name="lock_timeout_label">Keep the app unlocked (in minutes)</string>
     <string name="lock_timeout_help">App will be locked when there was no activity for few minutes. Set to zero for immediate locking.</string>
     <string name="clear_button">Clear</string>
+    <string name="save_button">Save</string>
 </resources>

@@ -16,12 +16,11 @@
         android:layout_alignParentEnd="true">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/encryption_key_label"
             android:id="@+id/encryptionKeyTextView"
-            android:paddingRight="10dp" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/encryption_key_label"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,7 +32,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="99"
-                android:paddingLeft="10dp" />
+                android:inputType="text" />
 
             <Button
                 android:id="@+id/keyCleanButton"
@@ -45,19 +44,18 @@
         </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/passcode_label"
-            android:id="@+id/passcodeTextView" />
-
-        <EditText
+            android:id="@+id/passcodeTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
+            android:text="@string/passcode_label"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <EditText
             android:id="@+id/passcodeEditText"
-            android:paddingLeft="10dp" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
 
         <TextView
             android:id="@+id/lockTimeoutTextView"
@@ -80,11 +78,11 @@
             android:inputType="number" />
 
         <Button
+            android:id="@+id/okButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save"
-            android:id="@+id/okButton"
-            android:onClick="onSaveClicked" />
+            android:onClick="onSaveClicked"
+            android:text="@string/save_button" />
 
     </LinearLayout>
 </RelativeLayout>
