@@ -76,6 +76,14 @@
             android:id="@+id/pasteButton"
             android:layout_margin="5dp"
             android:onClick="onPasteButtonClicked" />
+
+        <Button
+            android:id="@+id/clearButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:onClick="onClearButtonClicked"
+            android:text="@string/clear_button" />
     </LinearLayout>
 
 </RelativeLayout>

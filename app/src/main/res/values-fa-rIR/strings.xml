@@ -46,4 +46,5 @@
     <string name="paste_button_text">چسباندن</string>
     <string name="lock_timeout_label">اپ را چند دقیقه قفل نکن</string>
     <string name="lock_timeout_help">وقتی چند دقیقه با اپ کار نکنید، قفل می‌شود. مقدار این فیلد مشخص می‌کند چند دقیقه باید بگذرد تا اپ قفل شود. اگر خالی باشد، بلافاصله قفل می‌شود.</string>
+    <string name="clear_button">پاک کن</string>
 </resources>

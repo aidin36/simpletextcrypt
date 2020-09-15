@@ -110,6 +110,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void onClearButtonClicked(View view) {
+        setText("");
+    }
+
     @Override
     protected void onResume() {
         int timeout = SettingsManager.getInstance().getLockTimeout(this);

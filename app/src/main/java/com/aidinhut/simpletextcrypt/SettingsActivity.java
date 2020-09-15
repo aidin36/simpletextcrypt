@@ -66,6 +66,11 @@ public class SettingsActivity extends AppCompatActivity {
         finish();
     }
 
+    public void onKeyCleanClicked(View view) {
+        EditText encryptionKeyTextBox = (EditText)findViewById(R.id.encryptionKeyEditText);
+        encryptionKeyTextBox.setText("");
+    }
+
     @Override
     protected void onPause() {
         // This activity won't lock. So, if the user send the app to the background while on

@@ -23,11 +23,26 @@
             android:id="@+id/encryptionKeyTextView"
             android:paddingRight="10dp" />
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/encryptionKeyEditText"
-            android:paddingLeft="10dp" />
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/encryptionKeyEditText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="99"
+                android:paddingLeft="10dp" />
+
+            <Button
+                android:id="@+id/keyCleanButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:onClick="onKeyCleanClicked"
+                android:text="X" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,5 +85,6 @@
             android:text="Save"
             android:id="@+id/okButton"
             android:onClick="onSaveClicked" />
+
     </LinearLayout>
 </RelativeLayout>
