@@ -26,4 +26,6 @@
     <string name="decrypt_button_text">Decrypt</string>
     <string name="copy_button_text">Copy</string>
     <string name="paste_button_text">Paste</string>
+    <string name="lock_timeout_label">Keep the app unlocked (in minutes)</string>
+    <string name="lock_timeout_help">App will be locked when there was no activity for few minutes. Set to zero for immediate locking.</string>
 </resources>

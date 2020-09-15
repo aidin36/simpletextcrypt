@@ -44,6 +44,26 @@
             android:id="@+id/passcodeEditText"
             android:paddingLeft="10dp" />
 
+        <TextView
+            android:id="@+id/lockTimeoutTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lock_timeout_label" />
+
+        <TextView
+            android:id="@+id/lockTimeoutHelpTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lock_timeout_help"
+            android:textSize="10sp" />
+
+        <EditText
+            android:id="@+id/lockTimeoutEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

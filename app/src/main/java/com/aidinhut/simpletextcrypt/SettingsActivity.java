@@ -41,6 +41,7 @@ public class SettingsActivity extends AppCompatActivity {
     public void onSaveClicked(View view) {
         EditText encryptionKeyTextBox = (EditText)findViewById(R.id.encryptionKeyEditText);
         EditText passcodeTextBox = (EditText)findViewById(R.id.passcodeEditText);
+        EditText lockTimeoutTextBox = (EditText)findViewById(R.id.lockTimeoutEditText);
 
         if (encryptionKeyTextBox.getText().toString().length() < 3) {
             Utilities.showErrorMessage(getString(R.string.invalid_key_error), this);
@@ -55,6 +56,7 @@ public class SettingsActivity extends AppCompatActivity {
         try {
             SettingsManager.getInstance().setPasscode(passcodeTextBox.getText().toString(), this);
             SettingsManager.getInstance().setEncryptionKey(encryptionKeyTextBox.getText().toString(), this);
+            SettingsManager.getInstance().setLockTimeout(lockTimeoutTextBox.getText().toString(), this);
         } catch (Exception error) {
             Utilities.showErrorMessage(error.getMessage(), this);
             return;
@@ -76,10 +78,12 @@ public class SettingsActivity extends AppCompatActivity {
     private void loadPreviousSettings() {
         EditText encryptionKeyTextBox = (EditText)findViewById(R.id.encryptionKeyEditText);
         EditText passcodeTextBox = (EditText)findViewById(R.id.passcodeEditText);
+        EditText lockTimeoutTextBox = (EditText)findViewById(R.id.lockTimeoutEditText);
 
         try {
             encryptionKeyTextBox.setText(SettingsManager.getInstance().getEncryptionKey(this));
             passcodeTextBox.setText(SettingsManager.getInstance().getPasscode(this));
+            lockTimeoutTextBox.setText(Integer.toString(SettingsManager.getInstance().getLockTimeout(this)));
         } catch (Exception error) {
             Utilities.showErrorMessage(error.getMessage(), this);
         }

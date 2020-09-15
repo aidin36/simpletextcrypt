@@ -48,4 +48,6 @@
     <string name="decrypt_button_text">Décrypter</string>
     <string name="copy_button_text">Copie</string>
     <string name="paste_button_text">Coller</string>
+    <string name="lock_timeout_label">Gardez l\'application déverrouillée (en minutes)</string>
+    <string name="lock_timeout_help">App will be locked when there was no activity for few minutes. Set to zero for immediate locking.</string>
 </resources>

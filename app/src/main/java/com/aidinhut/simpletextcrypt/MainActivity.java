@@ -43,10 +43,13 @@ import com.aidinhut.simpletextcrypt.exceptions.EncryptionKeyNotSet;
 
 public class MainActivity extends AppCompatActivity {
 
+    Long lastActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.lastActivity = System.currentTimeMillis() / 1000;
     }
 
     @Override
@@ -108,12 +111,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
-        // Empty the text box, to protect privacy.
-        setText("");
+    protected void onResume() {
+        int timeout = SettingsManager.getInstance().getLockTimeout(this);
+        long currentTime = System.currentTimeMillis() / 1000;
+        if (timeout != 0 && currentTime - lastActivity >= timeout * 60) {
+            // Empty the text box, to protect privacy.
+            setText("");
 
-        // Finishing this activity, to get back to the lock screen.
-        finish();
+            // Finishing this activity, to get back to the lock screen.
+            finish();
+        } else {
+            this.lastActivity = System.currentTimeMillis() / 1000;
+        }
+
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        int timeout = SettingsManager.getInstance().getLockTimeout(this);
+        long currentTime = System.currentTimeMillis() / 1000;
+        if (timeout == 0 || currentTime - lastActivity >= timeout * 60) {
+            // Empty the text box, to protect privacy.
+            setText("");
+
+            // Finishing this activity, to get back to the lock screen.
+            finish();
+        }
 
         super.onPause();
     }

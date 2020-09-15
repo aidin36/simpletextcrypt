@@ -71,9 +71,9 @@ public class SettingsManager {
         this.passcode = passcode;
 
         try {
-        return Crypter.decrypt(
-                this.passcode,
-                sharedPref.getString(Constants.PASSCODE_SETTINGS_KEY, Constants.DEFAULT_PASSCODE));
+            return Crypter.decrypt(
+                    this.passcode,
+                    sharedPref.getString(Constants.PASSCODE_SETTINGS_KEY, Constants.DEFAULT_PASSCODE));
         } catch (IllegalBlockSizeException | BadPaddingException error) {
             // The settings couldn't be decrypted using this passcode. It probably wrong.
             throw new WrongPasscodeException(context);
@@ -94,8 +94,8 @@ public class SettingsManager {
         }
 
         return Crypter.decrypt(
-                    this.passcode,
-                    sharedPref.getString(Constants.PASSCODE_SETTINGS_KEY, Constants.DEFAULT_PASSCODE));
+                this.passcode,
+                sharedPref.getString(Constants.PASSCODE_SETTINGS_KEY, Constants.DEFAULT_PASSCODE));
     }
 
     /*
@@ -163,5 +163,33 @@ public class SettingsManager {
         if (!prefEditor.commit()) {
             throw new SettingsNotSavedException(context);
         }
+    }
+
+    public void setLockTimeout(String timeout, Context context) throws SettingsNotSavedException {
+        SharedPreferences sharedPref = context.getSharedPreferences(Constants.PREFERENCES_KEY,
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor prefEditor = sharedPref.edit();
+
+        int intTimeout = 0;
+        if (timeout != null && !timeout.isEmpty()) {
+            intTimeout = Integer.parseInt(timeout);
+        }
+
+        prefEditor.putInt(Constants.LOCK_TIMEOUT_SETTINGS_KEY, intTimeout);
+
+        if (!prefEditor.commit()) {
+            throw new SettingsNotSavedException(context);
+        }
+    }
+
+    public int getLockTimeout(Context context) {
+        SharedPreferences sharedPref = context.getSharedPreferences(Constants.PREFERENCES_KEY,
+                Context.MODE_PRIVATE);
+
+        if (!sharedPref.contains(Constants.LOCK_TIMEOUT_SETTINGS_KEY)) {
+            return 0;
+        }
+
+        return sharedPref.getInt(Constants.LOCK_TIMEOUT_SETTINGS_KEY, 0);
     }
 }
