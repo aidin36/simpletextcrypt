@@ -43,8 +43,7 @@ Installation
 It is recommended to install the app from
 [F-Droid](https://f-droid.org/repository/browse/?fdid=com.aidinhut.simpletextcrypt).
 
-Alternatively, you can download the apk directly from
-[releases tab](https://github.com/aidin36/simpletextcrypt/releases).
+You can also directly download the APK from F-Droid if you don't want to install the F-Droid app.
 
 Copyright
 ---------
