@@ -48,7 +48,7 @@ You can also directly download the APK from F-Droid if you don't want to install
 Copyright
 ---------
 
-Copyright (c) 2015 Aidin Gharibnavaz
+Copyright (c) 2015-2020 Aidin Gharibnavaz
 
 SimpleTextCrypt is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
