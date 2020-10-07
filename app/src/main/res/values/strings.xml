@@ -16,7 +16,7 @@
     <string name="encryption_key_label">Encryption Key (Use a complex one. i.e. "jn@32+iQm9")</string>
     <string name="passcode_label">Passcode (of Lock screen)</string>
     <string name="about_title">About SimpleTextCrypt</string>
-    <string name="about_copyright">Copyright © 2015 Aidin Gharibnavaz</string>
+    <string name="about_copyright">Copyright © 2015–2020 Aidin Gharibnavaz</string>
     <string name="about_source">Source code of the app can be found here: https://github.com/aidin36/simpletextcrypt</string>
     <string name="about_license_1">SimpleTextCrypt is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="about_license_2">SimpleTextCrypt is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.</string>

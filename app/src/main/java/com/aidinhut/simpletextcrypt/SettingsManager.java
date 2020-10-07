@@ -1,6 +1,6 @@
 /*
  * This file is part of SimpleTextCrypt.
- * Copyright (c) 2015, Aidin Gharibnavaz <aidin@aidinhut.com>
+ * Copyright (c) 2015-2020, Aidin Gharibnavaz <aidin@aidinhut.com>
  *
  * SimpleTextCrypt is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
