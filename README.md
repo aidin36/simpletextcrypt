@@ -55,7 +55,7 @@ To install the debug build: `./gradlew installDebug`
 Copyright
 ---------
 
-Copyright (c) 2015-2023 Aidin Gharibnavaz
+Copyright (c) 2015-2025 Aidin Gharibnavaz
 
 SimpleTextCrypt is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
