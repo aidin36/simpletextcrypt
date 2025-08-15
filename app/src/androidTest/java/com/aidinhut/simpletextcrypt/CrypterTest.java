@@ -42,12 +42,11 @@ public class CrypterTest extends ApplicationTestCase<Application> {
     public void testEncryptDecryptValidation() throws Exception {
         String encKey = "uir43@#89djhncAd.,[]-+091jhdncq`";
         String data = "Hi there! I'm a test data that is going to be encrypted.";
-        String decryptedData = null;
 
         String encryptedData = Crypter.encrypt(encKey, data);
-        decryptedData = Crypter.decrypt(encKey, encryptedData);
+        String decryptedData = Crypter.decrypt(encKey, encryptedData);
 
-        Assert.assertEquals(decryptedData, data);
+        Assert.assertEquals(data, decryptedData);
     }
 
     /*
@@ -58,11 +57,10 @@ public class CrypterTest extends ApplicationTestCase<Application> {
     public void testPasswordEncryptDecryptValidation() throws Exception {
         String password = "18736";
         String data = "Hi there! I'm a test data that is going to be encrypted.";
-        String decryptedData = null;
 
         String encryptedData = Crypter.encrypt(password, data);
-        decryptedData = Crypter.decrypt(password, encryptedData);
+        String decryptedData = Crypter.decrypt(password, encryptedData);
 
-        Assert.assertEquals(decryptedData, data);
+        Assert.assertEquals(data, decryptedData);
     }
 }
