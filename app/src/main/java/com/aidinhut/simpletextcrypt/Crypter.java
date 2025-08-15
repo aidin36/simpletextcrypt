@@ -125,8 +125,14 @@ public class Crypter {
     private static SecretKey deriveKey(String password, byte[] salt) {
         final Argon2Kt argon2Kt = new Argon2Kt();
 
-        // TODO: Follow this algorithm: https://www.ory.sh/blog/choose-recommended-argon2-parameters-password-hashing
-        final Argon2KtResult hashResult = argon2Kt.hash(Argon2Mode.ARGON2_ID, password.getBytes(), salt, 5, 65536);
+        // Following parameters adjusted so it takes about 400ms on my own device.
+        final Argon2KtResult hashResult =
+                argon2Kt.hash(
+                        Argon2Mode.ARGON2_ID,
+                        password.getBytes(),
+                        salt, 5,
+                        64 * 1024);
+
         final byte[] passwordHash = hashResult.rawHashAsByteArray();
 
         return new SecretKeySpec(passwordHash, "AES");
@@ -137,8 +143,7 @@ public class Crypter {
      * Uses older, insecure algorithms. Only used for decrypting old app's encrypted data.
      */
     private static SecretKey legacyDeriveKey(String password, String salt)
-        throws NoSuchAlgorithmException, InvalidKeySpecException
-    {
+            throws NoSuchAlgorithmException, InvalidKeySpecException {
         char[] passwordChars = new char[password.length()];
         password.getChars(0, password.length(), passwordChars, 0);
 

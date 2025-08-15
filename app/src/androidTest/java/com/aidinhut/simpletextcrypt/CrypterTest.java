@@ -17,22 +17,19 @@
  */
 package com.aidinhut.simpletextcrypt;
 
-import android.app.Application;
-import android.test.ApplicationTestCase;
+import android.util.Log;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.junit.Test;
 import org.junit.Assert;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
 /*
  * Implements stand-alone tests for Crypter class.
  */
-public class CrypterTest extends ApplicationTestCase<Application> {
-
-    public CrypterTest() {
-        super(Application.class);
-    }
+@RunWith(AndroidJUnit4.class)
+public class CrypterTest {
 
     /*
      * Tests if encrypting and decrypting a data will result

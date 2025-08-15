@@ -12,6 +12,8 @@ android {
         targetSdk 36
         versionCode 15
         versionName "5.1"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -41,4 +43,6 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+    androidTestImplementation libs.testRunner
+    androidTestImplementation libs.testRules
 }
