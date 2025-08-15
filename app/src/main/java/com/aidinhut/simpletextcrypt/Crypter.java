@@ -1,6 +1,6 @@
 /*
  * This file is part of SimpleTextCrypt.
- * Copyright (c) 2015-2020, Aidin Gharibnavaz <aidin@aidinhut.com>
+ * Copyright (c) 2015-2025, Aidin Gharibnavaz <aidin@aidinhut.com>
  *
  * SimpleTextCrypt is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,28 +21,34 @@ import android.util.Base64;
 
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
-import java.util.Random;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
+
+import com.lambdapioneer.argon2kt.Argon2Kt;
+import com.lambdapioneer.argon2kt.Argon2KtResult;
+import com.lambdapioneer.argon2kt.Argon2Mode;
 
 /*
  * Provides methods for encrypting and decrypting data.
  */
 public class Crypter {
+
+    private static final String ALGORITHM = "AES";
+    private static final String TRANSFORMATION = "AES/GCM/NoPadding";
+    private static final String LEGACY_TRANSFORMATION = "AES/CBC/PKCS5PADDING";
+    private static final int IV_SIZE = 12; // Recommended size for GCM
+    private static final int IV_SIZE_IN_BASE64 = 16;
+    private static final int TAG_SIZE = 128; // Tag size in bits
 
     public static String encrypt(String password, String input)
             throws UnsupportedEncodingException,
@@ -53,20 +59,37 @@ public class Crypter {
         // to be secret.
         // See: https://stackoverflow.com/questions/3436864/sending-iv-along-with-cipher-text-safe
 
-        String ivKey = getRandomIV();
-        IvParameterSpec iv = new IvParameterSpec(ivKey.getBytes("UTF-8"));
+        byte[] iv = getRandomIV();
 
-        SecretKey secretKey = deriveKey(password, ivKey);
+        SecretKey secretKey = deriveKey(password, iv);
 
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-        cipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);
-
+        Cipher cipher = Cipher.getInstance(TRANSFORMATION);
+        GCMParameterSpec gcmParameterSpec = new GCMParameterSpec(TAG_SIZE, iv);
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey, gcmParameterSpec);
         byte[] encrypted = cipher.doFinal(input.getBytes());
 
-        return ivKey + Base64.encodeToString(encrypted, Base64.DEFAULT);
+        return Base64.encodeToString(iv, Base64.DEFAULT) + Base64.encodeToString(encrypted, Base64.DEFAULT);
     }
 
     public static String decrypt(String password, String input)
+            throws UnsupportedEncodingException,
+            GeneralSecurityException {
+        // First 12 chars is the random IV.
+        String ivString = input.substring(0, IV_SIZE_IN_BASE64);
+        byte[] iv = Base64.decode(ivString, Base64.DEFAULT);
+        byte[] inputBytes = Base64.decode(input.substring(IV_SIZE_IN_BASE64), Base64.DEFAULT);
+
+        SecretKey secretKey = deriveKey(password, iv);
+
+        Cipher cipher = Cipher.getInstance(TRANSFORMATION);
+        GCMParameterSpec gcmParameterSpec = new GCMParameterSpec(TAG_SIZE, iv);
+        cipher.init(Cipher.DECRYPT_MODE, secretKey, gcmParameterSpec);
+        byte[] original = cipher.doFinal(inputBytes);
+
+        return new String(original);
+    }
+
+    public static String legacyDecrypt(String password, String input)
             throws UnsupportedEncodingException,
             GeneralSecurityException {
         // First 16 chars is the random IV.
@@ -75,9 +98,9 @@ public class Crypter {
 
         IvParameterSpec iv = new IvParameterSpec(ivKey.getBytes("UTF-8"));
 
-        SecretKey secretKey = deriveKey(password, ivKey);
+        SecretKey secretKey = legacyDeriveKey(password, ivKey);
 
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+        Cipher cipher = Cipher.getInstance("LEGACY_TRANSFORMATION");
         cipher.init(Cipher.DECRYPT_MODE, secretKey, iv);
 
         byte[] original = cipher.doFinal(Base64.decode(encryptedMessage, Base64.DEFAULT));
@@ -85,24 +108,35 @@ public class Crypter {
         return new String(original);
     }
 
-    /*
-     * Returns a random string of length 16 chars.
+    private static byte[] getRandomIV() {
+        byte[] iv = new byte[IV_SIZE];
+        SecureRandom random = new SecureRandom();
+        random.nextBytes(iv);
+        return iv;
+    }
+
+    // TODO: Should I use IV as salt? Should I use another random string?
+    //  Recommended salt is 16 bytes. 12 bytes (that I'm using) is the minimum.
+
+    /**
+     * Derives a secure key from the given password.
+     * Uses Argon2 algorithm, which is the recommendation in 2025.
      */
-    private static String getRandomIV() {
-        Random random = new Random();
-        StringBuilder builder = new StringBuilder();
+    private static SecretKey deriveKey(String password, byte[] salt) {
+        final Argon2Kt argon2Kt = new Argon2Kt();
 
-        for (int i = 0; i < 16; ++i) {
-            builder.append((char)(random.nextInt(96) + 32));
-        }
+        // TODO: Follow this algorithm: https://www.ory.sh/blog/choose-recommended-argon2-parameters-password-hashing
+        final Argon2KtResult hashResult = argon2Kt.hash(Argon2Mode.ARGON2_ID, password.getBytes(), salt, 5, 65536);
+        final byte[] passwordHash = hashResult.rawHashAsByteArray();
 
-        return builder.toString();
+        return new SecretKeySpec(passwordHash, "AES");
     }
 
     /*
      * Derives a key from the specified password.
+     * Uses older, insecure algorithms. Only used for decrypting old app's encrypted data.
      */
-    private static SecretKey deriveKey(String password, String salt)
+    private static SecretKey legacyDeriveKey(String password, String salt)
         throws NoSuchAlgorithmException, InvalidKeySpecException
     {
         char[] passwordChars = new char[password.length()];
