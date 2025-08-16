@@ -26,5 +26,8 @@ public class Constants {
     public static final String ENCRYPTION_KEY_SETTINGS_KEY = "EncryptionKeySettingsKey";
     public static final String PASSCODE_SETTINGS_KEY = "PasscodeSettingsKey";
     public static final String LOCK_TIMEOUT_SETTINGS_KEY = "LockTimeoutSettingsKey";
+    public static final String SETTINGS_VERSION_KEY = "SettingsVersion";
+    public static final String IS_PASSCODE_CHANGED_SETTINGS_KEY = "IsPasscodeChangedSettingsKey";
     public static final String DEFAULT_PASSCODE = "1111";
+    public static final Integer CURRENT_SETTINGS_VERSION = 2;
 }

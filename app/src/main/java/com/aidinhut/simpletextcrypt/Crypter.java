@@ -100,7 +100,7 @@ public class Crypter {
 
         SecretKey secretKey = legacyDeriveKey(password, ivKey);
 
-        Cipher cipher = Cipher.getInstance("LEGACY_TRANSFORMATION");
+        Cipher cipher = Cipher.getInstance(LEGACY_TRANSFORMATION);
         cipher.init(Cipher.DECRYPT_MODE, secretKey, iv);
 
         byte[] original = cipher.doFinal(Base64.decode(encryptedMessage, Base64.DEFAULT));
@@ -135,7 +135,7 @@ public class Crypter {
 
         final byte[] passwordHash = hashResult.rawHashAsByteArray();
 
-        return new SecretKeySpec(passwordHash, "AES");
+        return new SecretKeySpec(passwordHash, ALGORITHM);
     }
 
     /*
@@ -150,6 +150,6 @@ public class Crypter {
         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
         KeySpec spec = new PBEKeySpec(passwordChars, salt.getBytes(), 2000, 256);
 
-        return new SecretKeySpec(factory.generateSecret(spec).getEncoded(), "AES");
+        return new SecretKeySpec(factory.generateSecret(spec).getEncoded(), ALGORITHM);
     }
 }

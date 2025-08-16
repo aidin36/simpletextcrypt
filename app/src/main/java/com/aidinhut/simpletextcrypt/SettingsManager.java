@@ -19,6 +19,7 @@ package com.aidinhut.simpletextcrypt;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.aidinhut.simpletextcrypt.exceptions.EncryptionKeyNotSet;
 import com.aidinhut.simpletextcrypt.exceptions.SettingsNotSavedException;
@@ -55,11 +56,16 @@ public class SettingsManager {
      * Passcode is also the key for the encryption of the settings.
      * This method tries to decrypt the settings with the given passcode.
      * It also keeps the specified passcode for later decryption.
+     *
+     * If it can't find a "version" stored in the settings, it will try
+     * to do the decryption with the legacy algorithm. On success, it will
+     * upgrade the settings to the new version.
      */
     public String tryGetPasscode(String passcode, Context context)
             throws UnsupportedEncodingException,
             GeneralSecurityException,
-            WrongPasscodeException {
+            WrongPasscodeException,
+            SettingsNotSavedException {
         SharedPreferences sharedPref = context.getSharedPreferences(Constants.PREFERENCES_KEY,
                 Context.MODE_PRIVATE);
 
@@ -69,6 +75,8 @@ public class SettingsManager {
 
         // Keeping passcode for later use.
         this.passcode = passcode;
+
+        upgradeSettingsIfNeeded(passcode, context);
 
         try {
             return Crypter.decrypt(
@@ -121,6 +129,8 @@ public class SettingsManager {
         if (!prefEditor.commit()) {
             throw new SettingsNotSavedException(context);
         }
+
+        this.setSettingsVersionIfNeeded(Constants.CURRENT_SETTINGS_VERSION, context);
     }
 
     /*
@@ -192,4 +202,74 @@ public class SettingsManager {
 
         return sharedPref.getInt(Constants.LOCK_TIMEOUT_SETTINGS_KEY, 0);
     }
+
+    /**
+     * Currently, we either has version 2 or no version.
+     * So, we won't try to re-set the version if it's exists. Saves some computation power!
+     */
+    public void setSettingsVersionIfNeeded(Integer version, Context context) throws SettingsNotSavedException {
+        SharedPreferences sharedPref = context.getSharedPreferences(Constants.PREFERENCES_KEY,
+                Context.MODE_PRIVATE);
+
+        if (sharedPref.contains(Constants.SETTINGS_VERSION_KEY)) {
+            return;
+        }
+
+        SharedPreferences.Editor prefEditor = sharedPref.edit();
+
+        prefEditor.putInt(Constants.SETTINGS_VERSION_KEY, version);
+
+        if (!prefEditor.commit()) {
+            throw new SettingsNotSavedException(context);
+        }
+    }
+
+    private void upgradeSettingsIfNeeded(String passcode, Context context)
+            throws UnsupportedEncodingException,
+            GeneralSecurityException,
+            WrongPasscodeException,
+            SettingsNotSavedException {
+        SharedPreferences sharedPref = context.getSharedPreferences(Constants.PREFERENCES_KEY,
+                Context.MODE_PRIVATE);
+
+        if (sharedPref.contains(Constants.SETTINGS_VERSION_KEY)) {
+            // New settings. Nothing to do.
+            return;
+        }
+
+        // It's the legacy settings.
+
+        String storedPasscode = "";
+        try {
+            storedPasscode = Crypter.legacyDecrypt(
+                    passcode,
+                    sharedPref.getString(Constants.PASSCODE_SETTINGS_KEY, Constants.DEFAULT_PASSCODE));
+        } catch (IllegalBlockSizeException | BadPaddingException error) {
+            // The settings couldn't be decrypted using this passcode. It probably wrong.
+            throw new WrongPasscodeException(context);
+        }
+
+        if (storedPasscode.compareTo(passcode) != 0) {
+            throw new WrongPasscodeException(context);
+        }
+
+        Log.i("simpletextcrypt.SettingsManager", "Going to upgrade the settings from the legacy format.");
+
+        // Upgrading the settings. The 'set' methods will use the new algorithm. So we just need
+        // to call them.
+        this.passcode = passcode;
+        this.setPasscode(this.passcode, context);
+
+        if (sharedPref.contains(Constants.ENCRYPTION_KEY_SETTINGS_KEY)) {
+            String encryptionKey = Crypter.legacyDecrypt(
+                    this.passcode,
+                    sharedPref.getString(Constants.ENCRYPTION_KEY_SETTINGS_KEY, "")
+            );
+            this.setEncryptionKey(encryptionKey, context);
+        }
+
+        // Setting the version so we won't try to upgrade the next time.
+        setSettingsVersionIfNeeded(Constants.CURRENT_SETTINGS_VERSION, context);
+    }
 }
+
