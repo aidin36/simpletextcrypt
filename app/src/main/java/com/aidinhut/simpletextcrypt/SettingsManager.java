@@ -39,7 +39,7 @@ public class SettingsManager {
 
     private static SettingsManager instance;
 
-    private String passcode = "1111";
+    private String passcode = Constants.DEFAULT_PASSCODE;
 
     private SettingsManager() {
     }
@@ -70,6 +70,8 @@ public class SettingsManager {
                 Context.MODE_PRIVATE);
 
         if (!sharedPref.contains(Constants.PASSCODE_SETTINGS_KEY)) {
+            // There was no settings. First run. So there's no legacy settings to upgrade.
+            this.setSettingsVersionIfNeeded(Constants.CURRENT_SETTINGS_VERSION, context);
             return Constants.DEFAULT_PASSCODE;
         }
 
