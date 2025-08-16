@@ -2,7 +2,7 @@
 <resources>
     <!--
         This file is part of SimpleTextCrypt.
-        Copyright (C) 2015-2020, Aidin Gharibnavaz <aidin@aidinhut.com>
+        Copyright (C) 2015-2025, Aidin Gharibnavaz <aidin@aidinhut.com>
         
         SimpleTextCrypt is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@
     <string name="encryption_key_label">Clé de chiffrement (utilisez en une complexe comme "jn@32+iQm9")</string>
     <string name="passcode_label">Code (de l\'écran verrouillé)</string>
     <string name="about_title">À propos de SimpleTextCrypt</string>
-    <string name="about_copyright">Copyright © 2015–2020 Aidin Gharibnavaz</string>
+    <string name="about_copyright">Copyright © 2015–2025 Aidin Gharibnavaz</string>
     <string name="about_source">Le code source de cette app peut être trouvé sur : https://github.com/aidin36/simpletextcrypt</string>
     <string name="about_license_1">SimpleTextCrypt est un logiciel libre : vous pouvez le redistribuer et/ou le modifier sous les conditions la licence publique général GNU tel que publié par la Free Software Foundation, soit la version 3 de la license, ou (selon votre convenance) n\'importe quelle version supérieure.</string>
     <string name="about_license_2">SimpleTextCrypt est distribué dans l\'espoir qu\'il soit utile, mais SANS AUCUNE GARANTIE; sans même la garantie implicite de COMMERCIABILITÉ ou D\'ADAPTATION A UN USAGE PARTICULIER. Lisez la licence publique général GNU pour plus de details.</string>
@@ -46,6 +46,8 @@
     <string name="default_passcode">Le code par défaut est : 1111</string>
     <string name="encrypt_button_text">Crypter</string>
     <string name="decrypt_button_text">Décrypter</string>
+    <string name="legacy_decrypt_button_text">Legacy Decrypt</string>
+    <string name="legacy_help_question_mark">\?</string>
     <string name="copy_button_text">Copie</string>
     <string name="paste_button_text">Coller</string>
     <string name="lock_timeout_label">Gardez l\'application déverrouillée (en minutes)</string>

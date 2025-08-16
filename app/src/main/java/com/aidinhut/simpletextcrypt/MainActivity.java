@@ -18,16 +18,14 @@
 package com.aidinhut.simpletextcrypt;
 
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
+import java.util.Objects;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.ClipboardManager;
-import android.text.method.LinkMovementMethod;
+import android.content.ClipboardManager;
 import android.text.util.Linkify;
 import android.view.Gravity;
 import android.view.Menu;
@@ -96,6 +94,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void onLegacyDecryptButtonClicked(View view) {
+        try {
+            setText(Crypter.legacyDecrypt(getEncryptionKey(), getText()));
+        } catch (Exception error) {
+            Utilities.showErrorMessage(error.getMessage(), this);
+        }
+    }
+
     public void onCopyButtonClicked(View view) {
         ClipboardManager clipboard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
 
@@ -118,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         int timeout = SettingsManager.getInstance().getLockTimeout(this);
         long currentTime = System.currentTimeMillis() / 1000;
-        if (timeout != 0 && currentTime - lastActivity >= timeout * 60) {
+        if (timeout != 0 && currentTime - lastActivity >= timeout * 60L) {
             // Empty the text box, to protect privacy.
             setText("");
 
@@ -135,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         int timeout = SettingsManager.getInstance().getLockTimeout(this);
         long currentTime = System.currentTimeMillis() / 1000;
-        if (timeout == 0 || currentTime - lastActivity >= timeout * 60) {
+        if (timeout == 0 || currentTime - lastActivity >= timeout * 60L) {
             // Empty the text box, to protect privacy.
             setText("");
 
@@ -170,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
             EncryptionKeyNotSet {
         String encKey = SettingsManager.getInstance().getEncryptionKey(this);
 
-        if (encKey == "") {
+        if (Objects.equals(encKey, "")) {
             throw new EncryptionKeyNotSet(this);
         }
 

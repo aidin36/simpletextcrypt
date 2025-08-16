@@ -50,6 +50,22 @@
             android:layout_margin="5dp"
             android:onClick="onDecryptButtonClicked" />
 
+        <Button
+            android:id="@+id/legacyDecryptButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:onClick="onLegacyDecryptButtonClicked"
+            android:text="@string/legacy_decrypt_button_text"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/legacyDecryptHelpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/legacy_help_question_mark" />
+
     </LinearLayout>
 
     <LinearLayout
