@@ -1,59 +1,80 @@
-Simple Text Crypt
-=================
+# Simple Text Crypt
 
-It's an Android app which encrypts plain texts.
+It's an Android app that encrypts plain texts.
 This app does not claim any permissions, so you can trust that it cannot send
 any of your private data to anyone.
 
-Can You Trust it?
------------------
+## Can You Trust it?
 
-Messages produces by this app is secure and can be
-confidently send over a network, for example. It uses
+Messages produced by this app are secure and, for example, can be
+confidently sent over a network. It uses
 [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
-in CBC mode with
-PKCS5 padding for encryption, and uses
-[PBKDF2](https://en.wikipedia.org/wiki/PBKDF2) with HMAC, SHA1 and a random Salt
-in order to derive a secure key from the entered password.
-This is a very powerful encryption. Also it encrypts its
+in GCM mode with no padding for encryption. It uses
+[Argon2](https://en.wikipedia.org/wiki/Argon2) and a random Salt
+to derive a secure key from the entered password.
+This is a very powerful encryption. It also encrypts its
 settings before storing them on the device.
 
-However, the app itself may not be very secure, and probably vulnerable to
-some attacks. Although it is secure enough to stand attacks from non-expert
-crackers, e.g. normal users, it should not be used for serious data encryption.
+However, the app might be vulnerable to some attacks. Although it is secure
+enough to stand attacks from non-expert crackers, e.g. normal users,
+should not be used for serious data encryption.
 
-Why Should You Encrypt?
-----------------------
+## Why Should You Encrypt?
 
 It's a big subject to discuss. I recommend reading these two articles:
 
 1. [Why do you need PGP?](http://www.pgpi.org/doc/whypgp/en/)
-In this article, Phil Zimmermann compare encryption of emails to putting
-letters in an envelop: if you don't have anything to hide, why do you hide
-your messages in envelops?
+   In this article, Phil Zimmermann compares the encryption of emails to putting
+   letters in an envelope: if you don't have anything to hide, why do you hide
+   your messages in envelopes?
 
 2. [Why we encrypt?](https://www.schneier.com/blog/archives/2015/06/why_we_encrypt.html)
-This article tells us that we should encrypt everything not just to protect our
-privacy, but also to protect those activists which their lives are depend on
-encryption.
+   This article tells us that we should encrypt everything, not just to protect our
+   privacy, but also to protect those activists whose lives depend on encryption.
 
-Installation
-------------
+## Installation
 
 It is recommended to install the app from
 [F-Droid](https://f-droid.org/repository/browse/?fdid=com.aidinhut.simpletextcrypt).
 
 You can also directly download the APK from F-Droid if you don't want to install the F-Droid app.
 
-Development
------------
+## Decrypting with Other Apps
 
-To run the tests execute: `./gradlew app:connectedAndroidTest`
+Because Simple Text Crypt uses standard algorithms, you can decrypt your data with any other apps
+too. Follow these steps.
+
+The first `16` characters of the encrypted string is the IV. It's encoded with Base64. Extract that
+from the string and decode it from Base64 to bytes.
+
+You need use Argon2 algorithm to derive a key from your Encryption Key. With the following arguments:
+
+```
+Mode: ARGON2_ID
+Salt: The IV you extracted in the previous step
+Cost In Iterations: 5
+Cost In Memory: 64 * 1024
+```
+
+Remove the first `16` characters (IV) from the encrypted string. Pass the rest to your AES
+decryption function. The AES arguments are as follows:
+
+```
+Algorithm: AES
+Transformation: GCM
+Padding: No padding
+Tag size: 128
+```
+
+## Development
+
+Open the directory with Android Studio.
+
+From command line, to run the tests execute: `./gradlew app:connectedAndroidTest`
 
 To install the debug build: `./gradlew installDebug`
 
-Copyright
----------
+## Copyright
 
 Copyright (c) 2015-2025 Aidin Gharibnavaz
 
@@ -64,8 +85,8 @@ the Free Software Foundation, either version 3 of the License, or
 
 SimpleTextCrypt is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with SimpleTextCrypt.  If not, see <https://www.gnu.org/licenses/>.
+along with SimpleTextCrypt. If not, see <https://www.gnu.org/licenses/>.
