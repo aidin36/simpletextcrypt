@@ -35,36 +35,32 @@
         android:layout_above="@+id/copyButtonsLayout">
 
         <Button
+            android:id="@+id/encryptButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/encrypt_button_text"
-            android:id="@+id/encryptButton"
             android:layout_margin="5dp"
-            android:onClick="onEncryptButtonClicked" />
+            android:backgroundTint="@android:color/holo_blue_bright"
+            android:onClick="onEncryptButtonClicked"
+            android:text="@string/encrypt_button_text" />
 
         <Button
+            android:id="@+id/decryptButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/decrypt_button_text"
-            android:id="@+id/decryptButton"
             android:layout_margin="5dp"
-            android:onClick="onDecryptButtonClicked" />
+            android:backgroundTint="@android:color/holo_blue_bright"
+            android:onClick="onDecryptButtonClicked"
+            android:text="@string/decrypt_button_text" />
 
         <Button
             android:id="@+id/legacyDecryptButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:backgroundTint="@android:color/holo_blue_bright"
             android:onClick="onLegacyDecryptButtonClicked"
             android:text="@string/legacy_decrypt_button_text"
             android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/legacyDecryptHelpButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="@string/legacy_help_question_mark" />
 
     </LinearLayout>
 
@@ -78,26 +74,29 @@
         android:layout_alignParentLeft="false">
 
         <Button
+            android:id="@+id/copyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/copy_button_text"
-            android:id="@+id/copyButton"
             android:layout_margin="5dp"
-            android:onClick="onCopyButtonClicked" />
+            android:backgroundTint="@android:color/holo_blue_bright"
+            android:onClick="onCopyButtonClicked"
+            android:text="@string/copy_button_text" />
 
         <Button
+            android:id="@+id/pasteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/paste_button_text"
-            android:id="@+id/pasteButton"
             android:layout_margin="5dp"
-            android:onClick="onPasteButtonClicked" />
+            android:backgroundTint="@android:color/holo_blue_bright"
+            android:onClick="onPasteButtonClicked"
+            android:text="@string/paste_button_text" />
 
         <Button
             android:id="@+id/clearButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:backgroundTint="@android:color/holo_blue_bright"
             android:onClick="onClearButtonClicked"
             android:text="@string/clear_button" />
     </LinearLayout>

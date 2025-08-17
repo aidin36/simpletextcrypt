@@ -46,3 +46,8 @@ dependencies {
     androidTestImplementation libs.testRunner
     androidTestImplementation libs.testRules
 }
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}

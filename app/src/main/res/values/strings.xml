@@ -4,6 +4,7 @@
 
     <string name="action_settings">Settings</string>
     <string name="action_about">About</string>
+    <string name="action_help_text">Help</string>
     <string name="title_activity_lock">Lock</string>
     <string name="title_activity_settings">Settings</string>
     <string name="invalid_key_error">Key length must be at least 3 characters.</string>
@@ -25,12 +26,15 @@
     <string name="encrypt_button_text">Encrypt</string>
     <string name="decrypt_button_text">Decrypt</string>
     <string name="legacy_decrypt_button_text">Legacy Decrypt</string>
-    <string name="legacy_help_question_mark">\?</string>
     <string name="copy_button_text">Copy</string>
     <string name="paste_button_text">Paste</string>
     <string name="lock_timeout_label">Keep the app unlocked (in minutes)</string>
     <string name="lock_timeout_help">App will be locked when there was no activity for few minutes. Set to zero for immediate locking.</string>
     <string name="clear_button">Clear</string>
     <string name="save_button">Save</string>
+    <string name="help_title">Legacy Decrypt</string>
+    <string name="help_line1">From version 5, the app uses newer, stronger encryption algorithm.</string>
+    <string name="help_line2">Data encrypted with the older version of the app can be decrypted with Decrypt Legacy button.</string>
+    <string name="help_line3">Naturally you need to use the same key used for encryption (same key can be used for new algorithm too, so you don\'t need to change your key.)</string>
 
 </resources>

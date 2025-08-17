@@ -26,6 +26,7 @@
 
     <string name="action_settings">Paramètres</string>
     <string name="action_about">À propos</string>
+    <string name="action_help_text">Help</string>
     <string name="title_activity_lock">Verrouiller</string>
     <string name="title_activity_settings">Paramètres</string>
     <string name="invalid_key_error">La longueur de la clé doit être d\'au moins 3 caractères.</string>
@@ -47,11 +48,15 @@
     <string name="encrypt_button_text">Crypter</string>
     <string name="decrypt_button_text">Décrypter</string>
     <string name="legacy_decrypt_button_text">Legacy Decrypt</string>
-    <string name="legacy_help_question_mark">\?</string>
     <string name="copy_button_text">Copie</string>
     <string name="paste_button_text">Coller</string>
     <string name="lock_timeout_label">Gardez l\'application déverrouillée (en minutes)</string>
     <string name="lock_timeout_help">App will be locked when there was no activity for few minutes. Set to zero for immediate locking.</string>
     <string name="clear_button">clair</string>
     <string name="save_button">Save</string>
+    <string name="help_title">Legacy Decrypt</string>
+    <string name="help_line1">From version 5, the app uses newer, stronger encryption algorithm.</string>
+    <string name="help_line2">Data encrypted with the older version of the app can be decrypted with Decrypt Legacy button.</string>
+    <string name="help_line3">Note that you need to use the same key used for encryption (same key can be used for new algorithm too, so you don\'t need to change your key.)</string>
+
 </resources>

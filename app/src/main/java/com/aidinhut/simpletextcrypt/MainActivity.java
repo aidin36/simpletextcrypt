@@ -68,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.action_help) {
+            showHelp();
+        }
+
         if (id == R.id.action_about) {
             // Showing about message.
             showAbout();
@@ -208,5 +212,30 @@ public class MainActivity extends AppCompatActivity {
 
         dialogBuilder.show();
     }
+
+    private void showHelp() {
+            // To align the text at the center, and make it scrollable, I created a custom view
+            // for the message dialog.
+            TextView messageTextView = new TextView(this);
+            messageTextView.setLinksClickable(true);
+            messageTextView.setAutoLinkMask(Linkify.WEB_URLS);
+            messageTextView.setText(String.format("%s\n\n%s\n\n%s\n\n%s",
+                    this.getString(R.string.help_title),
+                    this.getString(R.string.help_line1),
+                    this.getString(R.string.help_line2),
+                    this.getString(R.string.help_line3)));
+            messageTextView.setPadding(10, 10, 10, 10);
+            messageTextView.setGravity(Gravity.CENTER);
+
+            ScrollView scrollView = new ScrollView(this);
+            scrollView.addView(messageTextView);
+
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+            dialogBuilder.setView(scrollView);
+            dialogBuilder.setPositiveButton("OK", null);
+            dialogBuilder.setCancelable(true);
+
+            dialogBuilder.show();
+        }
 
 }

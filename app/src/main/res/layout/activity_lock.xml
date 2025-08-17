@@ -40,14 +40,15 @@
                 android:imeOptions="actionDone"/>
 
             <Button
+                android:id="@+id/unlockButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/unlockButtonText"
-                android:id="@+id/unlockButton"
+                android:layout_below="@+id/passcodeEditText"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
+                android:backgroundTint="@android:color/holo_blue_bright"
                 android:onClick="onUnlockButtonClicked"
-                android:layout_below="@+id/passcodeEditText" />
+                android:text="@string/unlockButtonText" />
 
         </RelativeLayout>
 

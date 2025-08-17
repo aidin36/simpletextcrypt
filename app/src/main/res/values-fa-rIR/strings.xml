@@ -22,6 +22,7 @@
 
     <string name="action_settings">تنظیمات</string>
     <string name="action_about">درباره</string>
+    <string name="action_help_text">راهنما</string>
     <string name="title_activity_lock">قفل</string>
     <string name="title_activity_settings">تنظیمات</string>
     <string name="invalid_key_error">طول کلید باید حداقل سه کرکتر باشد.</string>
@@ -43,11 +44,15 @@
     <string name="encrypt_button_text">رمز گذاری</string>
     <string name="decrypt_button_text">رمز گشایی</string>
     <string name="legacy_decrypt_button_text">رمزگشایی قدیمی</string>
-    <string name="legacy_help_question_mark">؟</string>
     <string name="copy_button_text">کپی</string>
     <string name="paste_button_text">چسباندن</string>
     <string name="lock_timeout_label">اپ را چند دقیقه قفل نکن</string>
     <string name="lock_timeout_help">وقتی چند دقیقه با اپ کار نکنید، قفل می‌شود. مقدار این فیلد مشخص می‌کند چند دقیقه باید بگذرد تا اپ قفل شود. اگر خالی باشد، بلافاصله قفل می‌شود.</string>
     <string name="clear_button">پاک کن</string>
     <string name="save_button">ذخیره</string>
+    <string name="help_title">رمزگشایی قدیمی</string>
+    <string name="help_line1">از ورژن ۵ به بعد، اپ از الگوریتم جدیدتر و ایمن‌تری استفاده می‌کند.</string>
+    <string name="help_line2">داده‌هایی که با ورژن‌های قدیمی‌تر رمزنگاری شده‌اند، باید با دکمه «رمزگشایی قدیمی» رمزگشایی شوند.</string>
+    <string name="help_line3">طبیعتا باید همان کلیدی که برای رمزنگاری استفاده کرده بودید را برای رمزگشایی استفاده کنید. کلید یکسانی می‌تواند برای هر دو الگوریتم جدید و قدیم استفاده شود. بنابراین نیازی نیست کلید را تغییر دهید.</string>
+
 </resources>
