@@ -130,7 +130,8 @@ public class Crypter {
                 argon2Kt.hash(
                         Argon2Mode.ARGON2_ID,
                         password.getBytes(),
-                        salt, 5,
+                        salt,
+                        5,
                         64 * 1024);
 
         final byte[] passwordHash = hashResult.rawHashAsByteArray();
