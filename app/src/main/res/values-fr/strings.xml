@@ -29,14 +29,14 @@
     <string name="action_help_text">Help</string>
     <string name="title_activity_lock">Verrouiller</string>
     <string name="title_activity_settings">Paramètres</string>
-    <string name="invalid_key_error">La longueur de la clé doit être d\'au moins 3 caractères.</string>
+    <string name="invalid_passphrase_error">La longueur de la clé doit être d\'au moins 3 caractères.</string>
     <string name="invalid_passcode_error">Le code doit avoir au moins 2 caractères.</string>
     <string name="error_title">Erreur</string>
     <string name="settings_save_error">Impossible d\'enregistrer les préférences !</string>
-    <string name="no_encryption_key_set_error">Clé de chiffrement non définie. Veuillez aller dans les paramètres.</string>
+    <string name="no_passphrase_set_error">Clé de chiffrement non définie. Veuillez aller dans les paramètres.</string>
     <string name="unlockButtonText">Déverrouiller</string>
     <string name="wrong_passcode_error">Le code entré est mauvais.</string>
-    <string name="encryption_key_label">Clé de chiffrement (utilisez en une complexe comme "jn@32+iQm9")</string>
+    <string name="passphrase_label">Clé de chiffrement (utilisez en une complexe comme "jn@32+iQm9")</string>
     <string name="passcode_label">Code (de l\'écran verrouillé)</string>
     <string name="about_title">À propos de SimpleTextCrypt</string>
     <string name="about_copyright">Copyright © 2015–2025 Aidin Gharibnavaz</string>
@@ -57,6 +57,6 @@
     <string name="help_title">Legacy Decrypt</string>
     <string name="help_line1">From version 5, the app uses newer, stronger encryption algorithm.</string>
     <string name="help_line2">Data encrypted with the older version of the app can be decrypted with Decrypt Legacy button.</string>
-    <string name="help_line3">Note that you need to use the same key used for encryption (same key can be used for new algorithm too, so you don\'t need to change your key.)</string>
+    <string name="help_line3">Note that Passphrase was called Encryption Key in the old app, which was a wrong term. You can use the same Passphrase for old and new algorithm. No need to change it after upgrade.</string>
 
 </resources>

@@ -17,12 +17,7 @@
  */
 package com.aidinhut.simpletextcrypt;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,12 +34,12 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void onSaveClicked(View view) {
-        EditText encryptionKeyTextBox = (EditText)findViewById(R.id.encryptionKeyEditText);
+        EditText passphraseTextBox = (EditText)findViewById(R.id.passphraseEditText);
         EditText passcodeTextBox = (EditText)findViewById(R.id.passcodeEditText);
         EditText lockTimeoutTextBox = (EditText)findViewById(R.id.lockTimeoutEditText);
 
-        if (encryptionKeyTextBox.getText().toString().length() < 3) {
-            Utilities.showErrorMessage(getString(R.string.invalid_key_error), this);
+        if (passphraseTextBox.getText().toString().length() < 3) {
+            Utilities.showErrorMessage(getString(R.string.invalid_passphrase_error), this);
             return;
         }
         if (passcodeTextBox.getText().toString().length() < 2) {
@@ -55,7 +50,7 @@ public class SettingsActivity extends AppCompatActivity {
         // Saving settings.
         try {
             SettingsManager.getInstance().setPasscode(passcodeTextBox.getText().toString(), this);
-            SettingsManager.getInstance().setEncryptionKey(encryptionKeyTextBox.getText().toString(), this);
+            SettingsManager.getInstance().setPassphrase(passphraseTextBox.getText().toString(), this);
             SettingsManager.getInstance().setLockTimeout(lockTimeoutTextBox.getText().toString(), this);
         } catch (Exception error) {
             Utilities.showErrorMessage(error.getMessage(), this);
@@ -67,7 +62,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void onKeyCleanClicked(View view) {
-        EditText encryptionKeyTextBox = (EditText)findViewById(R.id.encryptionKeyEditText);
+        EditText encryptionKeyTextBox = (EditText)findViewById(R.id.passphraseEditText);
         encryptionKeyTextBox.setText("");
     }
 
@@ -81,12 +76,12 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void loadPreviousSettings() {
-        EditText encryptionKeyTextBox = (EditText)findViewById(R.id.encryptionKeyEditText);
+        EditText encryptionKeyTextBox = (EditText)findViewById(R.id.passphraseEditText);
         EditText passcodeTextBox = (EditText)findViewById(R.id.passcodeEditText);
         EditText lockTimeoutTextBox = (EditText)findViewById(R.id.lockTimeoutEditText);
 
         try {
-            encryptionKeyTextBox.setText(SettingsManager.getInstance().getEncryptionKey(this));
+            encryptionKeyTextBox.setText(SettingsManager.getInstance().getPassphrase(this));
             passcodeTextBox.setText(SettingsManager.getInstance().getPasscode(this));
             lockTimeoutTextBox.setText(Integer.toString(SettingsManager.getInstance().getLockTimeout(this)));
         } catch (Exception error) {

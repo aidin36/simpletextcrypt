@@ -21,7 +21,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.aidinhut.simpletextcrypt.exceptions.EncryptionKeyNotSet;
+import com.aidinhut.simpletextcrypt.exceptions.PassphraseNotSet;
 import com.aidinhut.simpletextcrypt.exceptions.SettingsNotSavedException;
 import com.aidinhut.simpletextcrypt.exceptions.WrongPasscodeException;
 
@@ -136,32 +136,32 @@ public class SettingsManager {
     }
 
     /*
-     * Gets the key that the text on the textbox should be encrypted with.
+     * Gets the passphrase that the text on the textbox should be encrypted with.
      *
-     * @throw EncryptionKeyNotSet: If the encryption key doesn't set in the settings.
+     * @throw PassphraseNotSet: If the passphrase doesn't set in the settings.
      */
-    public String getEncryptionKey(Context context)
+    public String getPassphrase(Context context)
             throws UnsupportedEncodingException,
             GeneralSecurityException,
-            EncryptionKeyNotSet {
+            PassphraseNotSet {
         SharedPreferences sharedPref = context.getSharedPreferences(Constants.PREFERENCES_KEY,
                 Context.MODE_PRIVATE);
 
-        if (!sharedPref.contains(Constants.ENCRYPTION_KEY_SETTINGS_KEY)) {
+        if (!sharedPref.contains(Constants.PASSPHRASE_SETTINGS_KEY)) {
             return "";
         }
 
         return Crypter.decrypt(
                 this.passcode,
-                sharedPref.getString(Constants.ENCRYPTION_KEY_SETTINGS_KEY, ""));
+                sharedPref.getString(Constants.PASSPHRASE_SETTINGS_KEY, ""));
     }
 
     /*
-     * Sets the key that the text on the textbox should be encrypted with.
+     * Sets the passphrase that the text on the textbox should be encrypted with.
      *
      * @throw SettingsNotSavedException: If settings could not be saved.
      */
-    public void setEncryptionKey(String key, Context context)
+    public void setPassphrase(String passphrase, Context context)
             throws UnsupportedEncodingException,
             GeneralSecurityException,
             SettingsNotSavedException {
@@ -169,8 +169,8 @@ public class SettingsManager {
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor prefEditor = sharedPref.edit();
 
-        prefEditor.putString(Constants.ENCRYPTION_KEY_SETTINGS_KEY,
-                Crypter.encrypt(this.passcode, key));
+        prefEditor.putString(Constants.PASSPHRASE_SETTINGS_KEY,
+                Crypter.encrypt(this.passcode, passphrase));
 
         if (!prefEditor.commit()) {
             throw new SettingsNotSavedException(context);
@@ -264,12 +264,12 @@ public class SettingsManager {
         this.passcode = passcode;
         this.setPasscode(this.passcode, context);
 
-        if (sharedPref.contains(Constants.ENCRYPTION_KEY_SETTINGS_KEY)) {
-            String encryptionKey = Crypter.legacyDecrypt(
+        if (sharedPref.contains(Constants.PASSPHRASE_SETTINGS_KEY)) {
+            String passphrase = Crypter.legacyDecrypt(
                     this.passcode,
-                    sharedPref.getString(Constants.ENCRYPTION_KEY_SETTINGS_KEY, "")
+                    sharedPref.getString(Constants.PASSPHRASE_SETTINGS_KEY, "")
             );
-            this.setEncryptionKey(encryptionKey, context);
+            this.setPassphrase(passphrase, context);
         }
 
         // Setting the version so we won't try to upgrade the next time.

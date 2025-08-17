@@ -24,9 +24,9 @@ import com.aidinhut.simpletextcrypt.R;
 /*
  * Throws if encryption key doesn't set in the settings.
  */
-public class EncryptionKeyNotSet extends Exception {
+public class PassphraseNotSet extends Exception {
 
-    public EncryptionKeyNotSet(Context context) {
-        super(context.getString(R.string.no_encryption_key_set_error));
+    public PassphraseNotSet(Context context) {
+        super(context.getString(R.string.no_passphrase_set_error));
     }
 }

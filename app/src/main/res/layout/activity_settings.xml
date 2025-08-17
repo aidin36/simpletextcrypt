@@ -19,7 +19,7 @@
             android:id="@+id/encryptionKeyTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/encryption_key_label"
+            android:text="@string/passphrase_label"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <LinearLayout
@@ -28,7 +28,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/encryptionKeyEditText"
+                android:id="@+id/passphraseEditText"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="99"

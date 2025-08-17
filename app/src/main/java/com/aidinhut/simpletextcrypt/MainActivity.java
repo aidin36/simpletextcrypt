@@ -36,7 +36,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.aidinhut.simpletextcrypt.exceptions.EncryptionKeyNotSet;
+import com.aidinhut.simpletextcrypt.exceptions.PassphraseNotSet;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onEncryptButtonClicked(View view) {
         try {
-            setText(Crypter.encrypt(getEncryptionKey(), getText()));
+            setText(Crypter.encrypt(getPassphrase(), getText()));
         }
         catch (Exception error) {
             Utilities.showErrorMessage(error.getMessage(), this);
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onDecryptButtonClicked(View view) {
         try {
-            setText(Crypter.decrypt(getEncryptionKey(), getText()));
+            setText(Crypter.decrypt(getPassphrase(), getText()));
         }
         catch (Exception error) {
             Utilities.showErrorMessage(error.getMessage(), this);
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onLegacyDecryptButtonClicked(View view) {
         try {
-            setText(Crypter.legacyDecrypt(getEncryptionKey(), getText()));
+            setText(Crypter.legacyDecrypt(getPassphrase(), getText()));
         } catch (Exception error) {
             Utilities.showErrorMessage(error.getMessage(), this);
         }
@@ -173,18 +173,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-     * Returns the encryption key from settings.
+     * Returns the passphrase from settings.
      */
-    private String getEncryptionKey() throws UnsupportedEncodingException,
+    private String getPassphrase() throws UnsupportedEncodingException,
             GeneralSecurityException,
-            EncryptionKeyNotSet {
-        String encKey = SettingsManager.getInstance().getEncryptionKey(this);
+            PassphraseNotSet {
+        String passphrase = SettingsManager.getInstance().getPassphrase(this);
 
-        if (Objects.equals(encKey, "")) {
-            throw new EncryptionKeyNotSet(this);
+        if (Objects.equals(passphrase, "")) {
+            throw new PassphraseNotSet(this);
         }
 
-        return encKey;
+        return passphrase;
     }
 
     private void showAbout() {

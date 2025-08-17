@@ -7,14 +7,14 @@
     <string name="action_help_text">Help</string>
     <string name="title_activity_lock">Lock</string>
     <string name="title_activity_settings">Settings</string>
-    <string name="invalid_key_error">Key length must be at least 3 characters.</string>
+    <string name="invalid_passphrase_error">Passphrase length must be at least 3 characters.</string>
     <string name="invalid_passcode_error">Passcode must have at least 2 characters.</string>
     <string name="error_title">Error</string>
     <string name="settings_save_error">Couldn\'t save settings!</string>
-    <string name="no_encryption_key_set_error">Encryption key doesn\'t set. Please see the settings.</string>
+    <string name="no_passphrase_set_error">Passphrase doesn\'t set. Please see the settings.</string>
     <string name="unlockButtonText">Unlock</string>
     <string name="wrong_passcode_error">Entered passcode is wrong.</string>
-    <string name="encryption_key_label">Encryption Key (Use a complex one. i.e. "jn@32+iQm9")</string>
+    <string name="passphrase_label">Encryption Passphrase (long and complex)</string>
     <string name="passcode_label">Passcode (of Lock screen)</string>
     <string name="about_title">About SimpleTextCrypt</string>
     <string name="about_copyright">Copyright © 2015–2025 Aidin Gharibnavaz</string>
@@ -35,6 +35,6 @@
     <string name="help_title">Legacy Decrypt</string>
     <string name="help_line1">From version 5, the app uses newer, stronger encryption algorithm.</string>
     <string name="help_line2">Data encrypted with the older version of the app can be decrypted with Decrypt Legacy button.</string>
-    <string name="help_line3">Naturally you need to use the same key used for encryption (same key can be used for new algorithm too, so you don\'t need to change your key.)</string>
+    <string name="help_line3">Note that Passphrase was called Encryption Key in the old app, which was a wrong term. You can use the same Passphrase for old and new algorithm. No need to change it after upgrade.</string>
 
 </resources>

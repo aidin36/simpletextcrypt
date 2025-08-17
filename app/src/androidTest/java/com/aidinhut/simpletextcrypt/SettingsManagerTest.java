@@ -107,12 +107,12 @@ public class SettingsManagerTest extends InstrumentationTestCase {
     public void testSettingEncryptionKey() throws Exception {
         String encryptionKey = "ancbdhey7834@#*().,{}}[f1~`f93-+";
 
-        SettingsManager.getInstance().setEncryptionKey(
+        SettingsManager.getInstance().setPassphrase(
                 encryptionKey,
                 getInstrumentation().getTargetContext());
 
         // Getting the key again and check it.
-        String gotEncKey = SettingsManager.getInstance().getEncryptionKey(
+        String gotEncKey = SettingsManager.getInstance().getPassphrase(
                 getInstrumentation().getTargetContext());
 
         Assert.assertEquals(gotEncKey.compareTo(encryptionKey), 0);

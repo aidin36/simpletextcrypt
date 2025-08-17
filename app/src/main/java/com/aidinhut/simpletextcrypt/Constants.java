@@ -23,7 +23,8 @@ package com.aidinhut.simpletextcrypt;
 public class Constants {
 
     public static final String PREFERENCES_KEY = "com.aidinhut.SimpleTextCrypt.Preferences";
-    public static final String ENCRYPTION_KEY_SETTINGS_KEY = "EncryptionKeySettingsKey";
+    // For backward compatibility, the value is still called Encryption key rather than passphrase.
+    public static final String PASSPHRASE_SETTINGS_KEY = "EncryptionKeySettingsKey";
     public static final String PASSCODE_SETTINGS_KEY = "PasscodeSettingsKey";
     public static final String LOCK_TIMEOUT_SETTINGS_KEY = "LockTimeoutSettingsKey";
     public static final String SETTINGS_VERSION_KEY = "SettingsVersion";

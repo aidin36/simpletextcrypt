@@ -11,7 +11,7 @@ confidently sent over a network. It uses
 [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
 in GCM mode with no padding for encryption. It uses
 [Argon2](https://en.wikipedia.org/wiki/Argon2) and a random Salt
-to derive a secure key from the entered password.
+to derive a secure key from the entered passphrase.
 This is a very powerful encryption. It also encrypts its
 settings before storing them on the device.
 
@@ -47,7 +47,7 @@ too. Follow these steps.
 The first `16` characters of the encrypted string is the IV. It's encoded with Base64. Extract that
 from the string and decode it from Base64 to bytes.
 
-You need use Argon2 algorithm to derive a key from your Encryption Key. With the following arguments:
+You need use Argon2 algorithm to derive a key from your passphrase. With the following arguments:
 
 ```
 Mode: ARGON2_ID
