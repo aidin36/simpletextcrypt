@@ -21,6 +21,9 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // To test the app on release locally, uncomment this line to sign it locally.
+            // signingConfig signingConfigs.debug
         }
     }
 

@@ -74,6 +74,9 @@ From command line, to run the tests execute: `./gradlew app:connectedAndroidTest
 
 To install the debug build: `./gradlew installDebug`
 
+To build release APKs for testing on phone, open `build.gradle` file and uncomment the
+`signingConfig` line. Then call `./gradlew assembleRelease`.
+
 ## Copyright
 
 Copyright (c) 2015-2025 Aidin Gharibnavaz
