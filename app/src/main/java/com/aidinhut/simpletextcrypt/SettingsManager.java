@@ -217,6 +217,8 @@ public class SettingsManager {
             return;
         }
 
+        Log.i("simpletextcrypt.SettingsManager", "No settings version found. Going to add it.");
+
         SharedPreferences.Editor prefEditor = sharedPref.edit();
 
         prefEditor.putInt(Constants.SETTINGS_VERSION_KEY, version);
