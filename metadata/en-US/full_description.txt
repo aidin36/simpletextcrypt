@@ -1,0 +1,22 @@
+This app does not claim any permissions, so you can trust that it cannot send
+any of your private data to anyone.
+
+Messages produced by this app are secure and, for example, can be
+confidently sent over a network. It uses AES in GCM mode with no padding for
+encryption. It uses Argon2 and a random Salt to derive a secure key from the
+entered passphrase.
+This is a very powerful encryption. It also encrypts its settings before storing
+them on the device.
+
+However, the app might be vulnerable to some attacks. Although it is secure
+enough to stand attacks from non-expert crackers, e.g. normal users,
+should not be used for serious data encryption.
+
+**Upgrading from 4.x to 5.x**
+
+The encryption of the settings is changed. The app should be able to detect the
+old settings and upgrade them with the new encryption algorithm. However, it's
+a good idea to **back-up your passphrase**. (Well, it's generally a good idea to
+back-up encryption keys and passwords in a secure place).
+
+If the app didn't work after upgrade, uninstall and install it again.

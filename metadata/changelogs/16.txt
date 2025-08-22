@@ -1,0 +1,6 @@
+The encryption algorithm upgraded from old AES CBC to the new AES GCM.
+
+Key deriving algorithm also upgraded from PBKDF2 to Argon2.
+
+A "Legacy Decrypt" button added so user can decrypt messages that were encrypted
+with the older versions.

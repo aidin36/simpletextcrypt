@@ -39,6 +39,15 @@ It is recommended to install the app from
 
 You can also directly download the APK from F-Droid if you don't want to install the F-Droid app.
 
+## Upgrading from 4.x to 5.x
+
+The encryption of the settings is changed. The app should be able to detect the
+old settings and upgrade them with the new encryption algorithm. However, it's
+a good idea to **back-up your passphrase**. (Well, it's generally a good idea to
+back-up encryption keys and passwords in a secure place).
+
+If the app didn't work after upgrade, uninstall and install it again.
+
 ## Decrypting with Other Apps
 
 Because Simple Text Crypt uses standard algorithms, you can decrypt your data with any other apps
