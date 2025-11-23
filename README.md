@@ -53,7 +53,7 @@ If the app didn't work after upgrade, uninstall and install it again.
 Because Simple Text Crypt uses standard algorithms, you can decrypt your data with any other apps
 too. Follow these steps.
 
-The first `16` characters of the encrypted string is the IV. It's encoded with Base64. Extract that
+The first `16` bytes of the encrypted string is the IV. It's encoded with Base64. Extract that
 from the string and decode it from Base64 to bytes.
 
 You need use Argon2 algorithm to derive a key from your passphrase. With the following arguments:
@@ -65,7 +65,7 @@ Cost In Iterations: 5
 Cost In Memory: 64 * 1024
 ```
 
-Remove the first `16` characters (IV) from the encrypted string. Pass the rest to your AES
+Remove the first `16` bytes (IV) from the encrypted string. Pass the rest to your AES
 decryption function. The AES arguments are as follows:
 
 ```
