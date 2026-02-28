@@ -88,7 +88,7 @@ To build release APKs for testing on phone, open `build.gradle` file and uncomme
 
 ## Copyright
 
-Copyright (c) 2015-2025 Aidin Gharibnavaz
+Copyright (c) 2015-2026 Aidin Gharibnavaz
 
 SimpleTextCrypt is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

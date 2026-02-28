@@ -1,6 +1,6 @@
 /*
  * This file is part of SimpleTextCrypt.
- * Copyright (c) 2015-2025, Aidin Gharibnavaz <aidin@aidinhut.com>
+ * Copyright (c) 2015-2026, Aidin Gharibnavaz <aidin@aidinhut.com>
  *
  * SimpleTextCrypt is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -102,7 +102,7 @@ object Crypter {
 
     /**
      * Derives a secure key from the given password.
-     * Uses Argon2 algorithm, which is the recommendation in 2025.
+     * Uses Argon2 algorithm, which is the recommendation in 2026.
      */
     private fun deriveKey(password: String, salt: ByteArray): SecretKey {
         val argon2Kt = Argon2Kt()

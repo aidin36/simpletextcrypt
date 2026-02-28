@@ -1,6 +1,6 @@
 /*
  * This file is part of SimpleTextCrypt.
- * Copyright (c) 2015-2025, Aidin Gharibnavaz <aidin@aidinhut.com>
+ * Copyright (c) 2015-2026, Aidin Gharibnavaz <aidin@aidinhut.com>
  *
  * SimpleTextCrypt is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ import android.test.ActivityInstrumentationTestCase2;
  */
 public class LockActivityTest extends ActivityInstrumentationTestCase2<LockActivity> {
 
-    public LockActivityTest() {
-        super(LockActivity.class);
-    }
+  public LockActivityTest() {
+    super(LockActivity.class);
+  }
 }
