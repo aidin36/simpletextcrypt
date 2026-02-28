@@ -3,23 +3,23 @@ plugins {
 }
 
 android {
-    namespace 'com.aidinhut.simpletextcrypt'
-    compileSdk 36
+    namespace = 'com.aidinhut.simpletextcrypt'
+    compileSdk = 36
 
     defaultConfig {
-        applicationId "com.aidinhut.simpletextcrypt"
-        minSdk 26
-        targetSdk 36
-        versionCode 16
-        versionName "5.1"
+        applicationId = "com.aidinhut.simpletextcrypt"
+        minSdk = 26
+        targetSdk = 36
+        versionCode = 17
+        versionName = "6.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled = true
+            shrinkResources = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             // To test the app on release locally, uncomment this line to sign it locally.
@@ -28,7 +28,7 @@ android {
     }
 
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
 
     useLibrary 'android.test.runner'
