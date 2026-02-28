@@ -1,6 +1,6 @@
 /*
  * This file is part of SimpleTextCrypt.
- * Copyright (c) 2015-2025, Aidin Gharibnavaz <aidin@aidinhut.com>
+ * Copyright (c) 2015-2026, Aidin Gharibnavaz <aidin@aidinhut.com>
  *
  * SimpleTextCrypt is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,13 +19,10 @@ package com.aidinhut.simpletextcrypt;
 
 import android.test.ActivityInstrumentationTestCase2;
 
-/**
- * Test cases for SettingsActivity.
- */
+/** Test cases for SettingsActivity. */
 public class SettingsActivityTest extends ActivityInstrumentationTestCase2<SettingsActivity> {
 
-    public SettingsActivityTest() {
-        super(SettingsActivity.class);
-    }
-
+  public SettingsActivityTest() {
+    super(SettingsActivity.class);
+  }
 }

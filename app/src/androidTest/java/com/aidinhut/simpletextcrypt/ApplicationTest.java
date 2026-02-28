@@ -1,6 +1,6 @@
 /*
  * This file is part of SimpleTextCrypt.
- * Copyright (c) 2015-2025, Aidin Gharibnavaz <aidin@aidinhut.com>
+ * Copyright (c) 2015-2026, Aidin Gharibnavaz <aidin@aidinhut.com>
  *
  * SimpleTextCrypt is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,11 +20,9 @@ package com.aidinhut.simpletextcrypt;
 import android.app.Application;
 import android.test.ApplicationTestCase;
 
-/**
- * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
- */
+/** <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a> */
 public class ApplicationTest extends ApplicationTestCase<Application> {
-    public ApplicationTest() {
-        super(Application.class);
-    }
+  public ApplicationTest() {
+    super(Application.class);
+  }
 }

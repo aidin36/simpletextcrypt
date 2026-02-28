@@ -43,6 +43,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -56,9 +57,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.activity.ComponentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aidinhut.simpletextcrypt.R
 import com.aidinhut.simpletextcrypt.viewmodel.MainViewModel
@@ -76,21 +77,26 @@ fun MainScreen(
     var showAbout by remember { mutableStateOf(false) }
     var showHelp by remember { mutableStateOf(false) }
 
-    // Handle lock timeout on lifecycle events.
-    val lifecycleOwner = LocalLifecycleOwner.current
-    LaunchedEffect(lifecycleOwner) {
+    // Check lock timeout every time this screen enters composition
+    // (returning from Settings or from background).
+    LaunchedEffect(Unit) {
+        viewModel.checkLockTimeout(context)
+    }
+
+    // Handle lock-on-background using the Activity lifecycle.
+    // Using Activity lifecycle (not NavBackStackEntry) so in-app navigation
+    // to Settings doesn't trigger the pause lock.
+    val activity = context as ComponentActivity
+    DisposableEffect(activity) {
         val observer = LifecycleEventObserver { _, event ->
-            when (event) {
-                Lifecycle.Event.ON_RESUME -> {
-                    viewModel.checkLockTimeout(context)
-                }
-                Lifecycle.Event.ON_PAUSE -> {
-                    viewModel.checkPauseLock(context)
-                }
-                else -> {}
+            if (event == Lifecycle.Event.ON_STOP) {
+                viewModel.checkPauseLock(context)
             }
         }
-        lifecycleOwner.lifecycle.addObserver(observer)
+        activity.lifecycle.addObserver(observer)
+        onDispose {
+            activity.lifecycle.removeObserver(observer)
+        }
     }
 
     // Navigate to lock when shouldLock triggers.

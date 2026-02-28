@@ -1,6 +1,6 @@
 /*
  * This file is part of SimpleTextCrypt.
- * Copyright (c) 2015-2025, Aidin Gharibnavaz <aidin@aidinhut.com>
+ * Copyright (c) 2015-2026, Aidin Gharibnavaz <aidin@aidinhut.com>
  *
  * SimpleTextCrypt is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,9 +20,7 @@ package com.aidinhut.simpletextcrypt;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.test.InstrumentationTestCase;
-
 import com.aidinhut.simpletextcrypt.exceptions.WrongPasscodeException;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -31,103 +29,100 @@ import org.junit.Test;
  */
 public class SettingsManagerTest extends InstrumentationTestCase {
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
+  @Override
+  protected void setUp() throws Exception {
+    super.setUp();
 
-        clearPreferences();
-    }
+    clearPreferences();
+  }
 
-    @Test
-    public void testTryGetDefaultPasscode() throws Exception {
-        String passcode = SettingsManager.getInstance().tryGetPasscode(
-                "1111", getInstrumentation().getTargetContext());
+  @Test
+  public void testTryGetDefaultPasscode() throws Exception {
+    String passcode =
+        SettingsManager.getInstance()
+            .tryGetPasscode("1111", getInstrumentation().getTargetContext());
 
-        Assert.assertEquals(passcode.compareTo("1111"), 0);
-    }
+    Assert.assertEquals(passcode.compareTo("1111"), 0);
+  }
 
-    @Test
-    public void testSettingPasscode() throws Exception {
-        String newPass = "184363";
-        String defaultPass = "1111";
+  @Test
+  public void testSettingPasscode() throws Exception {
+    String newPass = "184363";
+    String defaultPass = "1111";
 
-        SettingsManager.getInstance().setPasscode(newPass, getInstrumentation().getTargetContext());
+    SettingsManager.getInstance().setPasscode(newPass, getInstrumentation().getTargetContext());
 
-        // Getting the passcode again.
-        String passcode = SettingsManager.getInstance().tryGetPasscode(
-                newPass, getInstrumentation().getTargetContext());
+    // Getting the passcode again.
+    String passcode =
+        SettingsManager.getInstance()
+            .tryGetPasscode(newPass, getInstrumentation().getTargetContext());
 
-        Assert.assertEquals(passcode.compareTo(newPass), 0);
+    Assert.assertEquals(passcode.compareTo(newPass), 0);
 
-        // Setting the default passcode again.
-        SettingsManager.getInstance().setPasscode(
-                defaultPass,
-                getInstrumentation().getTargetContext());
+    // Setting the default passcode again.
+    SettingsManager.getInstance().setPasscode(defaultPass, getInstrumentation().getTargetContext());
 
-        // Getting the passcode again.
-        passcode = SettingsManager.getInstance().tryGetPasscode(
-                defaultPass, getInstrumentation().getTargetContext());
+    // Getting the passcode again.
+    passcode =
+        SettingsManager.getInstance()
+            .tryGetPasscode(defaultPass, getInstrumentation().getTargetContext());
 
-        Assert.assertEquals(passcode.compareTo(defaultPass), 0);
-    }
+    Assert.assertEquals(passcode.compareTo(defaultPass), 0);
+  }
 
-    @Test
-    public void testLongPasscode() throws Exception {
-        String newPass = "18436309872651726344567609";
-        String defaultPass = "1111";
+  @Test
+  public void testLongPasscode() throws Exception {
+    String newPass = "18436309872651726344567609";
+    String defaultPass = "1111";
 
-        SettingsManager.getInstance().setPasscode(newPass, getInstrumentation().getTargetContext());
+    SettingsManager.getInstance().setPasscode(newPass, getInstrumentation().getTargetContext());
 
-        // Getting the passcode again.
-        String passcode = SettingsManager.getInstance().tryGetPasscode(
-                newPass, getInstrumentation().getTargetContext());
+    // Getting the passcode again.
+    String passcode =
+        SettingsManager.getInstance()
+            .tryGetPasscode(newPass, getInstrumentation().getTargetContext());
 
-        Assert.assertEquals(passcode.compareTo(newPass), 0);
+    Assert.assertEquals(passcode.compareTo(newPass), 0);
 
-        // Setting the default passcode again.
-        SettingsManager.getInstance().setPasscode(
-                defaultPass,
-                getInstrumentation().getTargetContext());
+    // Setting the default passcode again.
+    SettingsManager.getInstance().setPasscode(defaultPass, getInstrumentation().getTargetContext());
 
-        // Getting the passcode again.
-        passcode = SettingsManager.getInstance().tryGetPasscode(
-                defaultPass, getInstrumentation().getTargetContext());
+    // Getting the passcode again.
+    passcode =
+        SettingsManager.getInstance()
+            .tryGetPasscode(defaultPass, getInstrumentation().getTargetContext());
 
-        Assert.assertEquals(passcode.compareTo(defaultPass), 0);
-    }
+    Assert.assertEquals(passcode.compareTo(defaultPass), 0);
+  }
 
-    @Test(expected = WrongPasscodeException.class)
-    public void testWrongPasscode() throws Exception {
-        SettingsManager.getInstance().tryGetPasscode(
-                "8888",
-                getInstrumentation().getTargetContext());
-    }
+  @Test(expected = WrongPasscodeException.class)
+  public void testWrongPasscode() throws Exception {
+    SettingsManager.getInstance().tryGetPasscode("8888", getInstrumentation().getTargetContext());
+  }
 
-    @Test
-    public void testSettingEncryptionKey() throws Exception {
-        String encryptionKey = "ancbdhey7834@#*().,{}}[f1~`f93-+";
+  @Test
+  public void testSettingEncryptionKey() throws Exception {
+    String encryptionKey = "ancbdhey7834@#*().,{}}[f1~`f93-+";
 
-        SettingsManager.getInstance().setPassphrase(
-                encryptionKey,
-                getInstrumentation().getTargetContext());
+    SettingsManager.getInstance()
+        .setPassphrase(encryptionKey, getInstrumentation().getTargetContext());
 
-        // Getting the key again and check it.
-        String gotEncKey = SettingsManager.getInstance().getPassphrase(
-                getInstrumentation().getTargetContext());
+    // Getting the key again and check it.
+    String gotEncKey =
+        SettingsManager.getInstance().getPassphrase(getInstrumentation().getTargetContext());
 
-        Assert.assertEquals(gotEncKey.compareTo(encryptionKey), 0);
-    }
+    Assert.assertEquals(gotEncKey.compareTo(encryptionKey), 0);
+  }
 
-    /*
-     * Clears all the shared preferences of the current app.
-     */
-    private void clearPreferences() {
-        Context context = getInstrumentation().getTargetContext();
-        SharedPreferences sharedPref = context.getSharedPreferences(Constants.PREFERENCES_KEY,
-                Context.MODE_PRIVATE);
-        SharedPreferences.Editor prefEditor = sharedPref.edit();
-        prefEditor.clear();
-        prefEditor.commit();
-    }
-
+  /*
+   * Clears all the shared preferences of the current app.
+   */
+  private void clearPreferences() {
+    Context context = getInstrumentation().getTargetContext();
+    SharedPreferences sharedPref =
+        context.getSharedPreferences(Constants.PREFERENCES_KEY, Context.MODE_PRIVATE);
+    SharedPreferences.Editor prefEditor = sharedPref.edit();
+    prefEditor.clear();
+    prefEditor.commit();
+  }
 }
