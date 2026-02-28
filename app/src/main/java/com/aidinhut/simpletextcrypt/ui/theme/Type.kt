@@ -15,18 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with SimpleTextCrypt.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aidinhut.simpletextcrypt.exceptions;
+package com.aidinhut.simpletextcrypt.ui.theme
 
-import android.content.Context;
+import androidx.compose.material3.Typography
 
-import com.aidinhut.simpletextcrypt.R;
-
-/*
- * Throws if encryption key doesn't set in the settings.
- */
-public class PassphraseNotSet extends Exception {
-
-    public PassphraseNotSet(Context context) {
-        super(context.getString(R.string.no_passphrase_set_error));
-    }
-}
+val AppTypography = Typography()

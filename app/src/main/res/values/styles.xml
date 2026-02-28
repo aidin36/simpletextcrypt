@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-    </style>
+    <!-- Base application theme. Using a plain Android theme since Compose manages the actual theming. -->
+    <style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>

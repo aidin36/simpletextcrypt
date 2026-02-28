@@ -15,18 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with SimpleTextCrypt.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aidinhut.simpletextcrypt.exceptions;
+package com.aidinhut.simpletextcrypt.exceptions
 
-import android.content.Context;
+import android.content.Context
+import com.aidinhut.simpletextcrypt.R
 
-import com.aidinhut.simpletextcrypt.R;
-
-/*
- * Throws if the passcode entered by user is wrong.
+/**
+ * Thrown if encryption key doesn't set in the settings.
  */
-public class WrongPasscodeException extends Exception {
-
-    public WrongPasscodeException(Context context) {
-        super(context.getString(R.string.wrong_passcode_error));
-    }
-}
+class PassphraseNotSet(context: Context) :
+    Exception(context.getString(R.string.no_passphrase_set_error))

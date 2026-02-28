@@ -15,25 +15,23 @@
  * You should have received a copy of the GNU General Public License
  * along with SimpleTextCrypt.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aidinhut.simpletextcrypt;
+package com.aidinhut.simpletextcrypt
 
-import android.app.AlertDialog;
-import android.content.Context;
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import com.aidinhut.simpletextcrypt.ui.navigation.AppNavigation
+import com.aidinhut.simpletextcrypt.ui.theme.SimpleTextCryptTheme
 
-/*
- * Provides some static methods.
- */
-public class Utilities {
-
-    /*
-     * Shows the specified message, in a dialog box titled `Error'.
-     */
-    public static void showErrorMessage(String message, Context context) {
-        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(context);
-        dlgAlert.setMessage(message);
-        dlgAlert.setTitle(context.getString(R.string.error_title));
-        dlgAlert.setPositiveButton("OK", null);
-        dlgAlert.setCancelable(true);
-        dlgAlert.show();
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            SimpleTextCryptTheme {
+                AppNavigation()
+            }
+        }
     }
 }

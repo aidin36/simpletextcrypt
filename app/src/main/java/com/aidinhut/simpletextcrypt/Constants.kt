@@ -15,20 +15,20 @@
  * You should have received a copy of the GNU General Public License
  * along with SimpleTextCrypt.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aidinhut.simpletextcrypt;
+package com.aidinhut.simpletextcrypt
 
-/*
+/**
  * Constants needed by the whole application.
  */
-public class Constants {
+object Constants {
+    const val PREFERENCES_KEY = "com.aidinhut.SimpleTextCrypt.Preferences"
 
-    public static final String PREFERENCES_KEY = "com.aidinhut.SimpleTextCrypt.Preferences";
     // For backward compatibility, the value is still called Encryption key rather than passphrase.
-    public static final String PASSPHRASE_SETTINGS_KEY = "EncryptionKeySettingsKey";
-    public static final String PASSCODE_SETTINGS_KEY = "PasscodeSettingsKey";
-    public static final String LOCK_TIMEOUT_SETTINGS_KEY = "LockTimeoutSettingsKey";
-    public static final String SETTINGS_VERSION_KEY = "SettingsVersion";
-    public static final String IS_PASSCODE_CHANGED_SETTINGS_KEY = "IsPasscodeChangedSettingsKey";
-    public static final String DEFAULT_PASSCODE = "1111";
-    public static final Integer CURRENT_SETTINGS_VERSION = 2;
+    const val PASSPHRASE_SETTINGS_KEY = "EncryptionKeySettingsKey"
+    const val PASSCODE_SETTINGS_KEY = "PasscodeSettingsKey"
+    const val LOCK_TIMEOUT_SETTINGS_KEY = "LockTimeoutSettingsKey"
+    const val SETTINGS_VERSION_KEY = "SettingsVersion"
+    const val IS_PASSCODE_CHANGED_SETTINGS_KEY = "IsPasscodeChangedSettingsKey"
+    const val DEFAULT_PASSCODE = "1111"
+    const val CURRENT_SETTINGS_VERSION = 2
 }
