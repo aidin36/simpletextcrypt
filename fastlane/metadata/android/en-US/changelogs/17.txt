@@ -1,1 +1,2 @@
-UI re-written and re-designed
++ UI re-written using Jetpack Compose and MVVM approach
++ Dependencies are upgraded
