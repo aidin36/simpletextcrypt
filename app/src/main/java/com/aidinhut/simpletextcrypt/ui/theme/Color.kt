@@ -20,9 +20,9 @@ package com.aidinhut.simpletextcrypt.ui.theme
 import androidx.compose.ui.graphics.Color
 
 // Light theme colors – blue accent matching the original holo_blue_bright buttons
-val LightPrimary = Color(0xFF0066CC)
+val LightPrimary = Color(0xFF00CFFF)
 val LightOnPrimary = Color.White
-val LightPrimaryContainer = Color(0xFFD4E4FF)
+val LightPrimaryContainer = Color(0xFF98ECFF)
 val LightOnPrimaryContainer = Color(0xFF001C3A)
 val LightSecondary = Color(0xFF535F70)
 val LightOnSecondary = Color.White
