@@ -79,7 +79,8 @@ Tag size: 128
 
 Open the directory with Android Studio.
 
-From command line, to run the tests execute: `./gradlew app:connectedAndroidTest`
+From command line, to run the tests, start an emulator (or connect a physical phone) and execute:
+`./gradlew app:connectedAndroidTest`
 
 To install the debug build: `./gradlew installDebug`
 

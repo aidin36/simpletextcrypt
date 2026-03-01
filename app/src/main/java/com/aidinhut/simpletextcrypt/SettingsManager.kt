@@ -51,7 +51,12 @@ class SettingsManager private constructor() {
         if (!sharedPref.contains(Constants.PASSCODE_SETTINGS_KEY)) {
             // There was no settings. First run. So there's no legacy settings to upgrade.
             setSettingsVersionIfNeeded(Constants.CURRENT_SETTINGS_VERSION, context)
-            return Constants.DEFAULT_PASSCODE
+
+            if (passcode == Constants.DEFAULT_PASSCODE) {
+                return Constants.DEFAULT_PASSCODE
+            }
+
+            throw WrongPasscodeException(context)
         }
 
         // Keeping passcode for later use.

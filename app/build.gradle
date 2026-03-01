@@ -31,10 +31,6 @@ android {
     buildFeatures {
         compose = true
     }
-
-    useLibrary 'android.test.runner'
-    useLibrary 'android.test.base'
-    useLibrary 'android.test.mock'
 }
 
 dependencies {
@@ -52,6 +48,7 @@ dependencies {
     debugImplementation libs.compose.ui.tooling
 
     testImplementation libs.junit
+    
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
     androidTestImplementation libs.testRunner
