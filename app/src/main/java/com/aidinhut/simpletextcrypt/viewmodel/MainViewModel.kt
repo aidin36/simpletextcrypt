@@ -108,7 +108,7 @@ class MainViewModel : ViewModel() {
         val timeout = SettingsManager.instance.getLockTimeout(context)
         val currentTime = System.currentTimeMillis() / 1000
         if (timeout != 0 && currentTime - lastActivity >= timeout * 60L) {
-            _uiState.value = _uiState.value.copy(text = "", shouldLock = true)
+            _uiState.value = _uiState.value.copy(shouldLock = true)
             return true
         }
         lastActivity = System.currentTimeMillis() / 1000
@@ -123,7 +123,7 @@ class MainViewModel : ViewModel() {
         val timeout = SettingsManager.instance.getLockTimeout(context)
         val currentTime = System.currentTimeMillis() / 1000
         if (timeout == 0 || currentTime - lastActivity >= timeout * 60L) {
-            _uiState.value = _uiState.value.copy(text = "", shouldLock = true)
+            _uiState.value = _uiState.value.copy(shouldLock = true)
             return true
         }
         return false

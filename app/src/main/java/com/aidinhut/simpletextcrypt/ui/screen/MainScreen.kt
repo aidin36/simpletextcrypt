@@ -69,7 +69,7 @@ import com.aidinhut.simpletextcrypt.viewmodel.MainViewModel
 fun MainScreen(
     onNavigateToSettings: () -> Unit,
     onLock: () -> Unit,
-    viewModel: MainViewModel = viewModel(),
+    viewModel: MainViewModel = viewModel(LocalContext.current as ComponentActivity),
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val context = LocalContext.current
