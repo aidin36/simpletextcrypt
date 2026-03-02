@@ -22,7 +22,6 @@ import android.content.ClipboardManager
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.aidinhut.simpletextcrypt.Crypter
-import com.aidinhut.simpletextcrypt.R
 import com.aidinhut.simpletextcrypt.SettingsManager
 import com.aidinhut.simpletextcrypt.exceptions.PassphraseNotSet
 import kotlinx.coroutines.flow.MutableStateFlow
