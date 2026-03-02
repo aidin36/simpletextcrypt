@@ -17,13 +17,17 @@
  */
 package com.aidinhut.simpletextcrypt.ui.navigation
 
+import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.aidinhut.simpletextcrypt.ui.screen.LockScreen
 import com.aidinhut.simpletextcrypt.ui.screen.MainScreen
 import com.aidinhut.simpletextcrypt.ui.screen.SettingsScreen
+import com.aidinhut.simpletextcrypt.viewmodel.MainViewModel
 
 object Routes {
     const val LOCK = "lock"
@@ -34,6 +38,8 @@ object Routes {
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
+    val context = LocalContext.current
+    val mainViewModel: MainViewModel = viewModel(context as ComponentActivity)
 
     NavHost(
         navController = navController,
@@ -42,6 +48,7 @@ fun AppNavigation() {
         composable(Routes.LOCK) {
             LockScreen(
                 onUnlocked = {
+                    mainViewModel.resetActivityTimer()
                     navController.navigate(Routes.MAIN) {
                         popUpTo(Routes.LOCK) { inclusive = true }
                     }
@@ -51,6 +58,7 @@ fun AppNavigation() {
 
         composable(Routes.MAIN) {
             MainScreen(
+                viewModel = mainViewModel,
                 onNavigateToSettings = {
                     navController.navigate(Routes.SETTINGS)
                 },
@@ -73,3 +81,4 @@ fun AppNavigation() {
         }
     }
 }
+

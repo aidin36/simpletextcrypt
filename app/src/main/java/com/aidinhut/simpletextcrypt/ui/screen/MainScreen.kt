@@ -78,20 +78,23 @@ fun MainScreen(
     var showAbout by remember { mutableStateOf(false) }
     var showHelp by remember { mutableStateOf(false) }
 
-    // Check lock timeout every time this screen enters composition
-    // (returning from Settings or from background).
-    LaunchedEffect(Unit) {
-        viewModel.checkLockTimeout(context)
-    }
-
     // Handle lock-on-background using the Activity lifecycle.
     // Using Activity lifecycle (not NavBackStackEntry) so in-app navigation
     // to Settings doesn't trigger the pause lock.
     val activity = context as ComponentActivity
+
     DisposableEffect(activity) {
         val observer = LifecycleEventObserver { _, event ->
-            if (event == Lifecycle.Event.ON_STOP) {
-                viewModel.checkPauseLock(context)
+            when (event) {
+                Lifecycle.Event.ON_RESUME -> {
+                    // Check timeout and lock if expired (handles brief pauses)
+                    viewModel.checkLockTimeout(context)
+                }
+                Lifecycle.Event.ON_STOP -> {
+                    // Record the time when app goes to background
+                    viewModel.recordBackgroundTime()
+                }
+                else -> {}
             }
         }
         activity.lifecycle.addObserver(observer)

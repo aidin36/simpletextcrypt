@@ -115,22 +115,23 @@ class MainViewModel : ViewModel() {
         return false
     }
 
-    /**
-     * Checks the pause-time lock logic. If timeout is 0 (immediate lock) or timer expired,
-     * clears text and signals lock.
-     */
-    fun checkPauseLock(context: Context): Boolean {
-        val timeout = SettingsManager.instance.getLockTimeout(context)
-        val currentTime = System.currentTimeMillis() / 1000
-        if (timeout == 0 || currentTime - lastActivity >= timeout * 60L) {
-            _uiState.value = _uiState.value.copy(shouldLock = true)
-            return true
-        }
-        return false
-    }
-
     fun resetLockFlag() {
         _uiState.value = _uiState.value.copy(shouldLock = false)
+    }
+
+    /**
+     * Resets the activity timer. Should be called when the user successfully unlocks
+     * the app so that the timeout clock starts fresh.
+     */
+    fun resetActivityTimer() {
+        lastActivity = System.currentTimeMillis() / 1000
+    }
+
+    /**
+     * Records the time the app went to background.
+     */
+    fun recordBackgroundTime() {
+        lastActivity = System.currentTimeMillis() / 1000
     }
 
     private fun getPassphrase(context: Context): String {
