@@ -103,9 +103,26 @@ class MainViewModel : ViewModel() {
      * Checks if the lock timeout has expired. Called on lifecycle resume/pause events.
      * Returns true if the app should lock (navigate back to lock screen).
      */
-    fun checkLockTimeout(context: Context): Boolean {
+    fun lockIfTimedOut(context: Context): Boolean {
         val timeout = SettingsManager.instance.getLockTimeout(context)
         val currentTime = System.currentTimeMillis() / 1000
+
+        // When Main Screen resumes, it calls this function, even after unlocking the screen. It would cause the
+        // lock screen to re-appear immediately after unlock. So, if user unlocked less than a second ago, we ignore it.
+        if (currentTime - lastActivity <= 1) {
+            return false
+        }
+
+        // If time out is zero, the screen would lock immediately.
+        // Also, there's a bug that sometimes when the app opens, it's in a bad state: Settings
+        // aren't loaded but the app is in the Main screen. This will workaround that (because
+        // timeout is not loaded from the settings and it's zero.)
+        if (timeout == 0) {
+            _uiState.value = _uiState.value.copy(shouldLock = true)
+            return true
+        }
+
+       
         if (timeout != 0 && currentTime - lastActivity >= timeout * 60L) {
             _uiState.value = _uiState.value.copy(shouldLock = true)
             return true

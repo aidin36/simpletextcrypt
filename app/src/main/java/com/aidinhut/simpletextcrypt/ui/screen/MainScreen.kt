@@ -87,7 +87,7 @@ fun MainScreen(
             when (event) {
                 Lifecycle.Event.ON_RESUME -> {
                     // Check timeout and lock if expired (handles brief pauses)
-                    viewModel.checkLockTimeout(context)
+                    viewModel.lockIfTimedOut(context)
                 }
                 Lifecycle.Event.ON_STOP -> {
                     // Record the time when app goes to background
