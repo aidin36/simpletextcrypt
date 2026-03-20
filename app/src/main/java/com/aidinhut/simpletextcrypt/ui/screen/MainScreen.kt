@@ -52,9 +52,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.LinkAnnotation
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withLink
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.activity.ComponentActivity
@@ -73,6 +80,7 @@ fun MainScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
     var showMenu by remember { mutableStateOf(false) }
     var showAbout by remember { mutableStateOf(false) }
     var showHelp by remember { mutableStateOf(false) }
@@ -248,13 +256,48 @@ fun MainScreen(
         AlertDialog(
             onDismissRequest = { showAbout = false },
             text = {
-                val aboutText = "${stringResource(R.string.about_copyright)}\n\n" +
-                        "${stringResource(R.string.about_source)}\n\n" +
-                        "${stringResource(R.string.about_license_1)}\n" +
-                        "${stringResource(R.string.about_license_2)}\n\n" +
-                        stringResource(R.string.about_license_3)
+                // This piece of code is to make the GitHub URL clickable
+                val githubUrl = "https://github.com/aidin36/simpletextcrypt"
+                val aboutSourceText = stringResource(R.string.about_source)
+                val aboutText = buildAnnotatedString {
+                    append(stringResource(R.string.about_copyright))
+                    append("\n\n")
+
+                    val linkStartInSource = aboutSourceText.indexOf(githubUrl)
+                    if (linkStartInSource >= 0) {
+                        append(aboutSourceText.substring(0, linkStartInSource))
+                        withLink(
+                            LinkAnnotation.Url(
+                                url = githubUrl,
+                                styles = TextLinkStyles(
+                                    style = SpanStyle(
+                                        color = MaterialTheme.colorScheme.primary,
+                                        textDecoration = TextDecoration.Underline,
+                                    ),
+                                ),
+                                linkInteractionListener = {
+                                    uriHandler.openUri(githubUrl)
+                                },
+                            ),
+                        ) {
+                            append(githubUrl)
+                        }
+                        append(aboutSourceText.substring(linkStartInSource + githubUrl.length))
+                    } else {
+                        append(aboutSourceText)
+                    }
+
+                    append("\n\n")
+                    append(stringResource(R.string.about_license_1))
+                    append("\n")
+                    append(stringResource(R.string.about_license_2))
+                    append("\n\n")
+                    append(stringResource(R.string.about_license_3))
+                }
+
                 Text(
                     text = aboutText,
+                    style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .fillMaxWidth()
